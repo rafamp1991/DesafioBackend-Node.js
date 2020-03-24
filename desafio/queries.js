@@ -191,6 +191,28 @@ const getCidadeByNome = (request, response) => {
     })
 }
 
+const getCidadeByEstadoNome = (request, response) => {
+    const nome = request.params.nome
+    
+    pool.query('SELECT cidades.id_cidade, cidades.nome, cidades.latitude, cidades.longitude, cidades.capital, estados.id_estado FROM cidades JOIN estados ON estados.id_estado = cidades.id_estado where estados.nome like $1', [nome], (error, results) => {
+        if (error) {
+        throw error
+        }
+        response.status(200).json(results.rows)
+    })
+}
+
+const getCidadeByEstadoUf = (request, response) => {
+    const uf = request.params.uf
+    
+    pool.query('SELECT cidades.id_cidade, cidades.nome, cidades.latitude, cidades.longitude, cidades.capital, estados.id_estado FROM cidades JOIN estados ON estados.id_estado = cidades.id_estado where estados.uf like $1', [uf], (error, results) => {
+        if (error) {
+        throw error
+        }
+        response.status(200).json(results.rows)
+    })
+}
+
 const createCidade = (request, response) => {
     const { nome, latitude, longitude, capital, id_estado } = request.body
 
@@ -249,6 +271,8 @@ module.exports = {
     getCidades,
     getCidadeById,
     getCidadeByNome,
+    getCidadeByEstadoNome,
+    getCidadeByEstadoUf,
     createCidade,
     updateCidade,
     deleteCidade,

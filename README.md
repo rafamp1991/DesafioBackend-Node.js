@@ -21,7 +21,3 @@ Em conjunto com este projeto foi desenvolvida uma API para o frontend em React J
 * express
 * Visual Studio Code
 * banco de dados relacional (Postgresql)
-
-## Licença
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
