@@ -1,7 +1,8 @@
 module.exports = function(app){
-    const dbClientes = require('./queries/queriesClientes')
-    const dbCidades = require('./queries/queriesCidades')
-    const dbEstados = require('./queries/queriesEstados')
+
+    const dbClientes = require('../queries/queriesClientes')
+    const dbCidades = require('../queries/queriesCidades')
+    const dbEstados = require('../queries/queriesEstados')
 
     app.get('/clientes', dbClientes.getClientes)
     app.get('/clientes/:id', dbClientes.getClienteById)
@@ -27,3 +28,4 @@ module.exports = function(app){
     app.put('/cidades/:id', dbCidades.updateCidade)
     app.delete('/cidades/:id', dbCidades.deleteCidade)
 }
+
