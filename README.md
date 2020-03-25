@@ -24,6 +24,11 @@ Em conjunto com este projeto foi desenvolvida uma API para o frontend em React J
 
 * No diretório backups/database_backup se encontra o arquivo [database.backup](https://github.com/rafamp1991/DesafioBackend-Node.js/tree/master/backups/database_backup), contendo o arquivo para importar o banco de dados.
 
+## Como rodar a aplicação
+
+* Para rodar a aplicação abra um prompt de comando e insira o caminho do diretório em que esta o projeto, em seguida execute o seguinte comando:
+	* nodemon index.js
+
 ## Rotas
 
 ### CIDADES
