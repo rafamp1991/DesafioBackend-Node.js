@@ -27,7 +27,7 @@ Em conjunto com este projeto foi desenvolvida uma API para o frontend em React J
 ## Como rodar a aplicação
 
 * Para rodar a aplicação abra um prompt de comando e insira o caminho do diretório em que esta o projeto, em seguida execute o seguinte comando:
-	* nodemon index.js
+	* npm run start:dev
 
 ## Rotas
 
