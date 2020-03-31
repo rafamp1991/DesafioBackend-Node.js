@@ -32,6 +32,18 @@ let CidadesController = class CidadesController {
         cidadeData.nome = String(nome);
         return this.cidadesService.findOne(cidadeData);
     }
+    async findByEstadoNome(nome, estado) {
+        estado.nome = String(nome);
+        let estadoData = new estado_entity_1.Estado();
+        estadoData = await this.cidadesService.findByEstado(estado);
+        return this.cidadesService.findByEstadoId(estadoData);
+    }
+    async findByEstadoUf(uf, estado) {
+        estado.uf = String(uf);
+        let estadoData = new estado_entity_1.Estado();
+        estadoData = await this.cidadesService.findByEstado(estado);
+        return this.cidadesService.findByEstadoId(estadoData);
+    }
     async create(cidadeData) {
         return this.cidadesService.create(cidadeData);
     }
@@ -65,6 +77,20 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CidadesController.prototype, "findByNome", null);
 __decorate([
+    common_1.Get('estado/nome/:nome'),
+    __param(0, common_2.Param('nome')), __param(1, common_2.Body()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, estado_entity_1.Estado]),
+    __metadata("design:returntype", Promise)
+], CidadesController.prototype, "findByEstadoNome", null);
+__decorate([
+    common_1.Get('estado/uf/:uf'),
+    __param(0, common_2.Param('uf')), __param(1, common_2.Body()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, estado_entity_1.Estado]),
+    __metadata("design:returntype", Promise)
+], CidadesController.prototype, "findByEstadoUf", null);
+__decorate([
     common_2.Post('create'),
     __param(0, common_2.Body()),
     __metadata("design:type", Function),
@@ -72,14 +98,14 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CidadesController.prototype, "create", null);
 __decorate([
-    common_2.Put(':id/update'),
+    common_2.Put('update/:id'),
     __param(0, common_2.Param('id')), __param(1, common_2.Body()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, cidade_entity_1.Cidade]),
     __metadata("design:returntype", Promise)
 ], CidadesController.prototype, "update", null);
 __decorate([
-    common_2.Delete(':id/delete'),
+    common_2.Delete('delete/:id'),
     __param(0, common_2.Param('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),

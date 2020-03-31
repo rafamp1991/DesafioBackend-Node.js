@@ -16,15 +16,30 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("typeorm");
 const typeorm_2 = require("@nestjs/typeorm");
 const cidade_entity_1 = require("./cidade.entity");
+const estado_entity_1 = require("../estados/estado.entity");
 let CidadesService = class CidadesService {
-    constructor(cidadeRepository) {
+    constructor(cidadeRepository, estadoRepository) {
         this.cidadeRepository = cidadeRepository;
+        this.estadoRepository = estadoRepository;
     }
     async findAll() {
         return await this.cidadeRepository.find();
     }
     async findOne(cidade) {
         return await this.cidadeRepository.find(cidade);
+    }
+    async findByEstado(estado) {
+        return await this.estadoRepository.findOne(estado);
+    }
+    async findByEstadoId(estado) {
+        return await this.cidadeRepository.find({
+            relations: ['estado'],
+            where: {
+                estado: {
+                    id: estado.id
+                }
+            }
+        });
     }
     async create(cidade) {
         return await this.cidadeRepository.save(cidade);
@@ -39,7 +54,9 @@ let CidadesService = class CidadesService {
 CidadesService = __decorate([
     common_1.Injectable(),
     __param(0, typeorm_2.InjectRepository(cidade_entity_1.Cidade)),
-    __metadata("design:paramtypes", [typeorm_1.Repository])
+    __param(1, typeorm_2.InjectRepository(estado_entity_1.Estado)),
+    __metadata("design:paramtypes", [typeorm_1.Repository,
+        typeorm_1.Repository])
 ], CidadesService);
 exports.CidadesService = CidadesService;
 //# sourceMappingURL=cidades.service.js.map

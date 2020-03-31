@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, HttpException, HttpStatus } from '@nestjs/common';
 import { Cliente } from './cliente.entity';
 import { ClientesService } from './clientes.service';
 import { Post, Put, Delete, Body, Param } from  '@nestjs/common';
@@ -25,40 +25,39 @@ export class ClientesController {
         return this.clientesService.findOne(clienteData);
     }
 
-    /* @Get('cidade/:id')
-    findByCidadeId(@Param('id') id, @Body() cidadeData: Cidades): Promise<Clientes[]> {
-        cidadeData.id = Number(id);
-        console.log('Cidade Controller: ' + cidadeData.id)
-      return this.clientesService.findByCidade(cidadeData);
-    } */
-
     @Get('cidade/:nome')
     async findByCidadeNome(@Param('nome') nome, @Body() cidade: Cidade): Promise<Cliente[]> {
         cidade.nome = String(nome);
-        console.log('Cidade Controller: ' + cidade.nome)
-
         let cidadeData = new Cidade();
-
-        //Primeiro verifico se existe a cidade pelo nome informado
-         cidadeData =  await this.clientesService.findByCidadeNome(cidade);
-        
-        //Depois chamo o método para listar os clientes dessa cidade
+        cidadeData =  await this.clientesService.findByCidadeNome(cidade);
         return this.clientesService.findByCidadeId(cidadeData);
     }
 
     @Post('create')
     async create(@Body() clienteData: Cliente): Promise<any> {
-        return this.clientesService.create(clienteData);
+        try {
+            return this.clientesService.create(clienteData);
+        } catch (error) {
+            throw new HttpException(
+                {
+                message: 'erro ao cadastrar o cliente',
+                success: false,
+                error,
+                data: null,
+                },
+                HttpStatus.BAD_REQUEST,
+                );
+        }
     }  
 
-    @Put(':id/update')
+    @Put('update/:id')
     async update(@Param('id') id, @Body() clienteData: Cliente): Promise<any> {
         clienteData.id = Number(id);
         console.log('Update #' + clienteData.id)
         return this.clientesService.update(clienteData);
     }
 
-    @Delete(':id/delete')
+    @Delete('delete/:id')
     async delete(@Param('id') id): Promise<any> {
         return this.clientesService.delete(id);
     }  

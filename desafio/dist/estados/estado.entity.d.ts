@@ -1,4 +1,4 @@
-import { Cidade } from 'src/cidades/cidade.entity';
+import { Cidade } from '../cidades/cidade.entity';
 export declare class Estado {
     id: number;
     uf: string;

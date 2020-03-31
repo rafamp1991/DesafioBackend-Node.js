@@ -26,7 +26,7 @@ AppModule = __decorate([
                 username: 'postgres',
                 password: 'admin',
                 entities: [__dirname + '/**/*.entity{.ts,.js}'],
-                synchronize: true,
+                synchronize: false,
             }),
             cidades_module_1.CidadesModule,
             clientes_module_1.ClientesModule,],

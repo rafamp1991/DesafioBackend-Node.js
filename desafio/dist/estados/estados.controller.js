@@ -82,14 +82,14 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], EstadosController.prototype, "create", null);
 __decorate([
-    common_2.Put(':id/update'),
+    common_2.Put('update/:id'),
     __param(0, common_2.Param('id')), __param(1, common_2.Body()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, estado_entity_1.Estado]),
     __metadata("design:returntype", Promise)
 ], EstadosController.prototype, "update", null);
 __decorate([
-    common_2.Delete(':id/delete'),
+    common_2.Delete('delete/:id'),
     __param(0, common_2.Param('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),

@@ -21,6 +21,13 @@ export class Cliente {
     sobrenome: string;
 
     @Column({
+        unique: true,
+        type:"varchar",
+        length: 14
+    })
+    cpf: string;
+
+    @Column({
         type:"varchar",
         length: 40
     })

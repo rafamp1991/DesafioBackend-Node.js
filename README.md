@@ -33,48 +33,50 @@ Em conjunto com este projeto foi desenvolvida uma API para o frontend em React J
 
 ### CIDADES
 
-* Listar todas as cidades: http://localhost:8080/cidades
+* Listar todas as cidades: http://localhost:3000/cidades
 	
-* Consultar cidade pelo id: http://localhost:8080/cidades/ + id da cidade
+* Consultar cidade pelo id: http://localhost:3000/cidades/id/ + id da cidade
 
-* Consultar cidades pelo nome: http://localhost:8080/cidades/nome/ + nome da cidade
+* Consultar cidades pelo nome: http://localhost:3000/cidades/nome/ + nome da cidade
 
-* Listar cidades pelo nome do Estado: http://localhost:8080/cidades/estado/nome/ + nome do estado
+* Listar cidades pelo nome do Estado: http://localhost:3000/cidades/estado/nome/ + nome do estado
 
-* Listar cidades pelo uf do Estado: http://localhost:8080/cidades/estado/uf/ + uf do estado
+* Listar cidades pelo uf do Estado: http://localhost:3000/cidades/estado/uf/ + uf do estado
 
-* Cadastrar cidade: http://localhost:8080/cidades	
+* Cadastrar cidade: http://localhost:3000/cidades/create
 	
-* Atualizar cidade: http://localhost:8080/cidades/ + id da cidade
+* Atualizar cidade: http://localhost:3000/cidades/update/ + id da cidade
 	
-* Deletar cidade: http://localhost:8080/cidades + id da cidade
+* Deletar cidade: http://localhost:3000/cidades/delete/ + id da cidade
 
 ### ESTADOS
 
-* Listar todos os estados: http://localhost:8080/estados
+* Listar todos os estados: http://localhost:3000/estados
 	
-* Consultar estado pelo id: http://localhost:8080/estados/ + id do estado
-	
-* Consultar estado pelo nome: http://localhost:8080/estados/nome/ + nome do estado
-	
-* Consultar estado pelo UF: http://localhost:8080/estados/uf/ + uf do estado
+* Consultar estado pelo id: http://localhost:3000/estados/id/ + id do estado
 
-* Cadastrar estado: http://localhost:8080/estados
+* Consultar estado pelo UF: http://localhost:3000/estados/uf/ + uf do estado
 	
-* Atualizar estado: http://localhost:8080/estados/ + id do estado
+* Consultar estado pelo nome: http://localhost:3000/estados/nome/ + nome do estado
+
+* Cadastrar estado: http://localhost:3000/estados/create
 	
-* Deletar estado: http://localhost:8080/estados/ + id do estado
+* Atualizar estado: http://localhost:3000/estados/update/ + id do estado
+	
+* Deletar estado: http://localhost:3000/estados/delete/ + id do estado
 
 ### CLIENTES
 
-* Listar todos os clientes: http://localhost:8080/clientes
+* Listar todos os clientes: http://localhost:3000/clientes
 
-* Consultar cliente pelo id: http://localhost:8080/clientes/ + id do cliente
+* Consultar cliente pelo id: http://localhost:3000/clientes/id/ + id do cliente
 	
-* Consultar cliente pelo nome: http://localhost:8080/clientes/nome/ + nome do cliente
+* Consultar cliente pelo nome: http://localhost:3000/clientes/nome/ + nome do cliente
+
+* Listar clientes pelo nome da cidade: http://localhost:3000/clientes/cidade/ + nome da cidade
 	
-* Cadastrar cliente: http://localhost:8080/clientes
+* Cadastrar cliente: http://localhost:3000/clientes/create
 	
-* Atualizar cliente: http://localhost:8080/clientes/ + id do cliente
+* Atualizar cliente: http://localhost:3000/clientes/update/ + id do cliente
 	
-* Deletar cliente: http://localhost:8080/clientes/ + id do cliente
+* Deletar cliente: http://localhost:3000/clientes/delete/ + id do cliente

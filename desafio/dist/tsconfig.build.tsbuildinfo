@@ -1942,11 +1942,11 @@
         "signature": "8f1241f5d9f0d3d72117768b3c974e462840fbd85026fb66685078945404cf2f"
       },
       "../src/clientes/cliente.entity.ts": {
-        "version": "851c20d20c03c8fc19731357b19e9c0f255968cadb90be3678ddd135e8d1099b",
-        "signature": "b181ebdc6d99601f2eefea8a864578b2f639fc6f16ee211733bae6d363c1dd8c"
+        "version": "f97b4a72140383276446c8f1f737bd62be331a4343e57f05782227342f6828f6",
+        "signature": "dc23a812f114f3d27ee759674804da146c3464ab75e2663055824aa09e5feffd"
       },
       "../src/cidades/cidade.entity.ts": {
-        "version": "bf30c7603d77621cd5d1ef0c3ae9c35c21a2a8c46d3c9b47de290deec767d3b4",
+        "version": "5b92006e56075d876dbde050d1c0e0499bef9d25dbd239ba4e6229fa00bf06b0",
         "signature": "cd294f0c5f71de2ee1ecfec3da0e71d0a5b955471c4020517f4656f09132e50a"
       },
       "../src/estados/estado.entity.ts": {
@@ -1958,7 +1958,7 @@
         "signature": "d3d7e32ed4c59c7dd02fd918d52f2daa886132c2ce60af0547ba0fa385d410d6"
       },
       "../src/estados/estados.controller.ts": {
-        "version": "eb2044155eddcd96dda07f9cbad340a2a8a556956107acf5dba096ef62c4aebd",
+        "version": "cf46ff1083ce98316b607eb9c4b47b7207856e8f7adee79b72e9e36d9bf00b9f",
         "signature": "4463040a0b8e0041598221bc74d87aba9898565e876dd7b6163ccc212de6eda4"
       },
       "../src/estados/estados.module.ts": {
@@ -1966,15 +1966,15 @@
         "signature": "25a2b506e1bd6e4c5bffaa683977477ba61167fce116425a115db93c72abcd37"
       },
       "../src/cidades/cidades.service.ts": {
-        "version": "dd705f8c491d9666c9073391a1d21ad151a88a90036d66e4ed85bceaa9758e8f",
-        "signature": "6d477117caaf7f1e0a84eabad4cb2151883e5d19269eff969c554716355265f1"
+        "version": "254bd10889b105dc36c53919a939e0b83df73492380ca3efd8d9e30ad22231f8",
+        "signature": "96814bf0d9780a6923b8564563a8132137983ed4168de49459734ea8bb0b1437"
       },
       "../src/cidades/cidades.controller.ts": {
-        "version": "41feeddb2a8f2f4434cdb83a26c6993e0389407fa3ba3523bb0638a2bd2fec41",
-        "signature": "e49cd717b554314471cc113ab1609f17fd94a492a555424e7fda97c53353430d"
+        "version": "4088848cf175055bf1714ae286fa3b0b960995a868098b25631508d1a2533964",
+        "signature": "30b90ecbcb2a9b6b794e6912c06933837727e423c22a6b6c255661a667693f75"
       },
       "../src/cidades/cidades.module.ts": {
-        "version": "f7f10b29527408ae09e3234715dc2164af1f7041ae80297c833133412c93845e",
+        "version": "b6f8e70d3b9dcd8ab26527a59eb5a8d97148a1d4b50a3b44de8904e0f1c5cf94",
         "signature": "abbd020b049a11df61ee52449a506dc2b7862df90f75aff4a908d4a21a4999a1"
       },
       "../src/clientes/clientes.service.ts": {
@@ -1982,7 +1982,7 @@
         "signature": "d6fb0d2bfd78ae2933b74716cfbc1d9e267c528c6e7312c594cf66ef599bf54f"
       },
       "../src/clientes/clientes.controller.ts": {
-        "version": "356de8045eaf883a61e910c75e072ecbf7cd9c99085052cfd153980666e44962",
+        "version": "587d4e182ec178773c44579d49e30011af531b9308e6d6aff039aea89d350ef1",
         "signature": "5909aedae9d387a783c6b05f4b0ed1617815effe90f1877337179c507c2c1303"
       },
       "../src/clientes/clientes.module.ts": {
@@ -1990,7 +1990,7 @@
         "signature": "9240845af1cbaa914af79b4e3f01ce277f95ec4b71b05dd818ffb080b6083b75"
       },
       "../src/app.module.ts": {
-        "version": "97afa93001704e4449e06d08c1caf665cb86be9241763fc2af0b22cde0b07dcd",
+        "version": "03c57dfc408b5906d0c415f8239958ca86f317d4b1e0b168172f32c2d23919b4",
         "signature": "9fc7f7b6ad854404973b8cba8e6d883f758237991968e9a3965d716d46f1da88"
       },
       "../node_modules/@nestjs/core/adapters/http-adapter.d.ts": {
@@ -6669,6 +6669,7 @@
         "../node_modules/typeorm/index.d.ts",
         "../node_modules/@nestjs/typeorm/index.d.ts",
         "../src/cidades/cidade.entity.ts",
+        "../src/estados/estado.entity.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/util.d.ts",
@@ -6690,6 +6691,7 @@
         "../src/cidades/cidades.controller.ts",
         "../node_modules/@nestjs/typeorm/index.d.ts",
         "../src/cidades/cidade.entity.ts",
+        "../src/estados/estado.entity.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/util.d.ts",
@@ -11833,6 +11835,17 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "../src/clientes/cliente.entity.ts": [
+        "../src/cidades/cidade.entity.ts"
+      ],
+      "../src/cidades/cidade.entity.ts": [
+        "../node_modules/typeorm/index.d.ts",
+        "../src/estados/estado.entity.ts",
+        "../src/clientes/cliente.entity.ts"
+      ],
+      "../src/estados/estado.entity.ts": [
+        "../src/cidades/cidade.entity.ts"
+      ],
       "../src/estados/estados.service.ts": [
         "../node_modules/typeorm/index.d.ts",
         "../src/estados/estado.entity.ts"
@@ -11843,11 +11856,13 @@
       ],
       "../src/cidades/cidades.service.ts": [
         "../node_modules/typeorm/index.d.ts",
-        "../src/cidades/cidade.entity.ts"
+        "../src/cidades/cidade.entity.ts",
+        "../src/estados/estado.entity.ts"
       ],
       "../src/cidades/cidades.controller.ts": [
         "../src/cidades/cidades.service.ts",
-        "../src/cidades/cidade.entity.ts"
+        "../src/cidades/cidade.entity.ts",
+        "../src/estados/estado.entity.ts"
       ],
       "../src/clientes/clientes.service.ts": [
         "../node_modules/typeorm/index.d.ts",
@@ -12859,17 +12874,6 @@
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "../src/clientes/cliente.entity.ts": [
-        "../src/cidades/cidade.entity.ts"
-      ],
-      "../src/cidades/cidade.entity.ts": [
-        "../node_modules/typeorm/index.d.ts",
-        "../src/estados/estado.entity.ts",
-        "../src/clientes/cliente.entity.ts"
-      ],
-      "../src/estados/estado.entity.ts": [
-        "../src/cidades/cidade.entity.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [
@@ -13358,6 +13362,18 @@
       "../node_modules/@nestjs/typeorm/dist/typeorm.module.d.ts",
       "../node_modules/@nestjs/typeorm/dist/index.d.ts",
       "../node_modules/@nestjs/typeorm/index.d.ts",
+      "../src/clientes/cliente.entity.ts",
+      "../src/cidades/cidade.entity.ts",
+      "../src/estados/estado.entity.ts",
+      "../src/estados/estados.service.ts",
+      "../src/estados/estados.controller.ts",
+      "../src/estados/estados.module.ts",
+      "../src/cidades/cidades.service.ts",
+      "../src/cidades/cidades.controller.ts",
+      "../src/cidades/cidades.module.ts",
+      "../src/clientes/clientes.service.ts",
+      "../src/clientes/clientes.module.ts",
+      "../src/app.module.ts",
       "../node_modules/@nestjs/core/adapters/http-adapter.d.ts",
       "../node_modules/@nestjs/core/adapters/index.d.ts",
       "../node_modules/@nestjs/core/injector/module-token-factory.d.ts",
@@ -13485,19 +13501,7 @@
       "../node_modules/@types/webpack/index.d.ts",
       "../node_modules/@types/yargs-parser/index.d.ts",
       "../node_modules/@types/yargs/index.d.ts",
-      "../src/estados/estado.entity.ts",
-      "../src/estados/estados.controller.ts",
-      "../src/estados/estados.service.ts",
-      "../src/clientes/cliente.entity.ts",
-      "../src/cidades/cidade.entity.ts",
-      "../src/estados/estados.module.ts",
-      "../src/cidades/cidades.service.ts",
-      "../src/cidades/cidades.controller.ts",
-      "../src/cidades/cidades.module.ts",
-      "../src/clientes/clientes.service.ts",
-      "../src/clientes/clientes.controller.ts",
-      "../src/clientes/clientes.module.ts",
-      "../src/app.module.ts"
+      "../src/clientes/clientes.controller.ts"
     ]
   },
   "version": "3.8.3"

@@ -30,7 +30,7 @@ export class Cidade {
     })
     capital: boolean;
 
-    @ManyToOne(type => Estado, Estados => Estados.id)
+    @ManyToOne(type => Estado, estado => estado.id)
     estado: Estado;
 
     @OneToMany(type => Cliente, clientes => clientes.cidade)

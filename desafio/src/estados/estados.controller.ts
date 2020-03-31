@@ -35,14 +35,14 @@ export class EstadosController {
       return this.estadosService.create(estadoData);
     }  
 
-    @Put(':id/update')
+    @Put('update/:id')
     async update(@Param('id') id, @Body() estadoData: Estado): Promise<any> {
         estadoData.id = Number(id);
         console.log('Update #' + estadoData.id)
         return this.estadosService.update(estadoData);
     }
 
-    @Delete(':id/delete')
+    @Delete('delete/:id')
     async delete(@Param('id') id): Promise<any> {
       return this.estadosService.delete(id);
     }  

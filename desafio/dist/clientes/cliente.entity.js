@@ -35,6 +35,14 @@ __decorate([
 ], Cliente.prototype, "sobrenome", void 0);
 __decorate([
     typeorm_1.Column({
+        unique: true,
+        type: "varchar",
+        length: 14
+    }),
+    __metadata("design:type", String)
+], Cliente.prototype, "cpf", void 0);
+__decorate([
+    typeorm_1.Column({
         type: "varchar",
         length: 40
     }),

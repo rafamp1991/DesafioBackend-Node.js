@@ -46,7 +46,7 @@ __decorate([
     __metadata("design:type", Boolean)
 ], Cidade.prototype, "capital", void 0);
 __decorate([
-    typeorm_1.ManyToOne(type => estado_entity_1.Estado, Estados => Estados.id),
+    typeorm_1.ManyToOne(type => estado_entity_1.Estado, estado => estado.id),
     __metadata("design:type", estado_entity_1.Estado)
 ], Cidade.prototype, "estado", void 0);
 __decorate([

@@ -3,6 +3,7 @@ import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Cidade } from './cidade.entity';
 import { UpdateResult, DeleteResult } from  'typeorm';
+import { Estado } from 'src/estados/estado.entity';
 
 @Injectable()
 export class CidadesService {
@@ -10,6 +11,9 @@ export class CidadesService {
     constructor(
         @InjectRepository(Cidade)
         private cidadeRepository: Repository<Cidade>,
+
+        @InjectRepository(Estado)
+        private estadoRepository: Repository<Estado>,
     ) { }
 
     async findAll(): Promise<Cidade[]> {
@@ -20,9 +24,20 @@ export class CidadesService {
         return await this.cidadeRepository.find(cidade);
     }
 
-    /* async find(cidade: Cidades): Promise<any> {
-        return await this.cidadeRepository.findOne(cidade, { relations: ["estados.nome"] });
-    } */
+    async findByEstado(estado: Estado) : Promise<Estado> {
+        return await this.estadoRepository.findOne(estado);
+    }
+
+    async findByEstadoId(estado: Estado): Promise<Cidade[]> {
+        return await this.cidadeRepository.find({
+            relations: ['estado'],
+            where: {
+                estado: {
+                    id: estado.id
+                }
+            }
+        });
+    }
 
     async create(cidade: Cidade): Promise<Cidade> {
         return await this.cidadeRepository.save(cidade);

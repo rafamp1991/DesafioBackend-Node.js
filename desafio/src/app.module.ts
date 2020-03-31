@@ -16,7 +16,7 @@ import { ClientesModule } from './clientes/clientes.module';
       username: 'postgres',
       password: 'admin',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: true,
+      synchronize: false,
    }),
     CidadesModule,
     ClientesModule,],

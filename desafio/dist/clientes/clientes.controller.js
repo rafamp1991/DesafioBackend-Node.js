@@ -34,13 +34,22 @@ let ClientesController = class ClientesController {
     }
     async findByCidadeNome(nome, cidade) {
         cidade.nome = String(nome);
-        console.log('Cidade Controller: ' + cidade.nome);
         let cidadeData = new cidade_entity_1.Cidade();
         cidadeData = await this.clientesService.findByCidadeNome(cidade);
         return this.clientesService.findByCidadeId(cidadeData);
     }
     async create(clienteData) {
-        return this.clientesService.create(clienteData);
+        try {
+            return this.clientesService.create(clienteData);
+        }
+        catch (error) {
+            throw new common_1.HttpException({
+                message: 'erro ao cadastrar o cliente',
+                success: false,
+                error,
+                data: null,
+            }, common_1.HttpStatus.BAD_REQUEST);
+        }
     }
     async update(id, clienteData) {
         clienteData.id = Number(id);
@@ -86,14 +95,14 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ClientesController.prototype, "create", null);
 __decorate([
-    common_2.Put(':id/update'),
+    common_2.Put('update/:id'),
     __param(0, common_2.Param('id')), __param(1, common_2.Body()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, cliente_entity_1.Cliente]),
     __metadata("design:returntype", Promise)
 ], ClientesController.prototype, "update", null);
 __decorate([
-    common_2.Delete(':id/delete'),
+    common_2.Delete('delete/:id'),
     __param(0, common_2.Param('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),

@@ -25,25 +25,35 @@ export class CidadesController {
         return this.cidadesService.findOne(cidadeData);
     }
 
-    /* @Get('estado/:nome')
-    findByEstadoNome(@Param('nome') nome, @Body() cidadeData: Cidades): Promise<Cidades[]> {
-        cidadeData.nome = String(nome);
-        return this.cidadesService.find(cidadeData);
-    } */
+    @Get('estado/nome/:nome')
+    async findByEstadoNome(@Param('nome') nome, @Body() estado: Estado): Promise<Cidade[]> {
+        estado.nome = String(nome);
+        let estadoData = new Estado();        
+        estadoData =  await this.cidadesService.findByEstado(estado);
+        return this.cidadesService.findByEstadoId(estadoData);
+    }
+
+    @Get('estado/uf/:uf')
+    async findByEstadoUf(@Param('uf') uf, @Body() estado: Estado): Promise<Cidade[]> {
+        estado.uf = String(uf);
+        let estadoData = new Estado();        
+        estadoData =  await this.cidadesService.findByEstado(estado);
+        return this.cidadesService.findByEstadoId(estadoData);
+    }
 
     @Post('create')
     async create(@Body() cidadeData: Cidade): Promise<any> {
       return this.cidadesService.create(cidadeData);
     }  
 
-    @Put(':id/update')
+    @Put('update/:id')
     async update(@Param('id') id, @Body() cidadeData: Cidade): Promise<any> {
         cidadeData.id = Number(id);
         console.log('Update #' + cidadeData.id)
         return this.cidadesService.update(cidadeData);
     }
 
-    @Delete(':id/delete')
+    @Delete('delete/:id')
     async delete(@Param('id') id): Promise<any> {
       return this.cidadesService.delete(id);
     }
