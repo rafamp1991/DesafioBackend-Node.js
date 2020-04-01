@@ -1786,7 +1786,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"nome\": \"ZumbilandiaTeste\",\r\n    \"latitude\": -1.72183,\r\n    \"longitude\": -48.8788,\r\n    \"capital\": false,\r\n    \"estados.id\":\"13\"\r\n}",
+											"raw": "{\r\n    \"nome\": \"ZumbilandiaTeste\",\r\n    \"latitude\": -1.72183,\r\n    \"longitude\": -48.8788,\r\n    \"capital\": false,\r\n    \"estado.id\":\"13\"\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -2025,7 +2025,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"nome\": \"Texas\",\r\n    \"uf\": \"TX\"\r\n}",
+											"raw": "{\r\n    \"uf\": \"TX\",\r\n    \"nome\": \"Texas\"\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -2300,7 +2300,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"nome\": \"Vanessa\",\r\n    \"sobrenome\": \"da Mata\",\r\n\t\"cpf\": \"00000000016\",\r\n    \"sexo\": \"feminino\",\r\n    \"dataNascimento\": \"10/02/1976\",\r\n    \"idade\":\"44\",\r\n    \"cidade\":\"5100409\"\t\r\n}",
+											"raw": "{\r\n    \"nome\": \"Vanessa\",\r\n    \"sobrenome\": \"da Mata\",\r\n\t\"cpf\": \"000.000.000-16\",\r\n    \"sexo\": \"feminino\",\r\n    \"dataNascimento\": \"10/02/1976\",\r\n    \"idade\":\"44\",\r\n    \"cidade\":\"5100409\"\t\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -2336,7 +2336,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"nome\": \"Vanessa\",\r\n    \"sobrenome\": \"da Mata\",\r\n    \"sexo\": \"feminino\",\r\n    \"dataNascimento\": \"10/02/1976\",\r\n    \"idade\":\"44\",\r\n    \"cidade\":\"5100409\"\t\r\n}",
+											"raw": "{\r\n    \"nome\": \"Vanessa\",\r\n    \"sobrenome\": \"da Mata\",\r\n    \"cpf\": \"000.000.000-16\",\r\n    \"sexo\": \"feminino\",\r\n    \"dataNascimento\": \"10/02/1976\",\r\n    \"idade\":\"44\",\r\n    \"cidade\":\"5100409\"\t\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -2344,7 +2344,7 @@
 											}
 										},
 										"url": {
-											"raw": "http://localhost:3000/clientes/update/8",
+											"raw": "http://localhost:3000/clientes/update/7",
 											"protocol": "http",
 											"host": [
 												"localhost"
@@ -2353,7 +2353,7 @@
 											"path": [
 												"clientes",
 												"update",
-												"8"
+												"7"
 											]
 										},
 										"description": "Atualiza um cliente."
