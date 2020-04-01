@@ -24,32 +24,57 @@ let CidadesController = class CidadesController {
     index() {
         return this.cidadesService.findAll();
     }
-    findById(id, cidadeData) {
+    async findById(id, cidadeData) {
         cidadeData.id = Number(id);
+        let cidade = new cidade_entity_1.Cidade();
+        cidade = await this.cidadesService.validaCidade(cidadeData);
+        if (!cidade) {
+            throw new common_1.HttpException('Não foi possível encontrar o recurso especificado.', 404);
+        }
         return this.cidadesService.findOne(cidadeData);
     }
-    findByNome(nome, cidadeData) {
+    async findByNome(nome, cidadeData) {
         cidadeData.nome = String(nome);
+        let cidade = new cidade_entity_1.Cidade();
+        cidade = await this.cidadesService.validaCidade(cidadeData);
+        if (!cidade) {
+            throw new common_1.HttpException('Não foi possível encontrar o recurso especificado.', 404);
+        }
         return this.cidadesService.findOne(cidadeData);
     }
     async findByEstadoNome(nome, estado) {
         estado.nome = String(nome);
         let estadoData = new estado_entity_1.Estado();
         estadoData = await this.cidadesService.findByEstado(estado);
+        if (!estadoData) {
+            throw new common_1.HttpException('Não foi possível encontrar o recurso especificado.', 404);
+        }
         return this.cidadesService.findByEstadoId(estadoData);
     }
     async findByEstadoUf(uf, estado) {
         estado.uf = String(uf);
         let estadoData = new estado_entity_1.Estado();
         estadoData = await this.cidadesService.findByEstado(estado);
+        if (!estadoData) {
+            throw new common_1.HttpException('Não foi possível encontrar o recurso especificado.', 404);
+        }
         return this.cidadesService.findByEstadoId(estadoData);
     }
     async create(cidadeData) {
+        let cidade = new cidade_entity_1.Cidade();
+        cidade = await this.cidadesService.validaCidade(cidadeData);
+        if (cidade) {
+            throw new common_1.HttpException('A cidade já existe.', 409);
+        }
         return this.cidadesService.create(cidadeData);
     }
     async update(id, cidadeData) {
         cidadeData.id = Number(id);
-        console.log('Update #' + cidadeData.id);
+        let cidade = false;
+        cidade = await this.cidadesService.validaId(cidadeData);
+        if (cidade == false) {
+            throw new common_1.HttpException('Não foi possível encontrar o recurso especificado.', 404);
+        }
         return this.cidadesService.update(cidadeData);
     }
     async delete(id) {

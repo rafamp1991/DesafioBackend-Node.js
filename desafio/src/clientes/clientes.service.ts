@@ -29,7 +29,6 @@ export class ClientesService {
     }
 
     async findByCidadeId(cidade: Cidade): Promise<Cliente[]> {
-        console.log('Cidade Service: ' + cidade.id)
         return await this.clienteRepository.find({
             relations: ['cidade'],
             where: {
@@ -48,7 +47,27 @@ export class ClientesService {
         return await this.clienteRepository.update(cliente.id, cliente);
     }
 
-    async delete(id): Promise<DeleteResult> {
+    async delete(id): Promise<DeleteResult> {        
         return await this.clienteRepository.delete(id);
+    }
+
+    async validaCpf(cliente: Cliente) : Promise<any> {
+        const clienteData = await this.clienteRepository.findOne({ cpf: cliente.cpf });
+        if(clienteData){
+            return true;
+        }
+        return false;
+    }
+
+    async validaId(cliente: Cliente) : Promise<any> {
+        const clienteData = await this.clienteRepository.findOne({ id: cliente.id });
+        if(clienteData){
+            return true;
+        }
+        return false;
+    }
+
+    async validaCliente(cliente: Cliente) : Promise<Cliente> {
+        return await this.clienteRepository.findOne(cliente);
     }
 }

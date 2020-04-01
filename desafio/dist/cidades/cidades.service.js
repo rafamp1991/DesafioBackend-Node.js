@@ -50,6 +50,16 @@ let CidadesService = class CidadesService {
     async delete(id) {
         return await this.cidadeRepository.delete(id);
     }
+    async validaId(cidade) {
+        const cidadeData = await this.cidadeRepository.findOne({ id: cidade.id });
+        if (cidadeData) {
+            return true;
+        }
+        return false;
+    }
+    async validaCidade(cidade) {
+        return await this.cidadeRepository.findOne(cidade);
+    }
 };
 CidadesService = __decorate([
     common_1.Injectable(),

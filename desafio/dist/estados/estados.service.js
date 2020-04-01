@@ -35,6 +35,16 @@ let EstadosService = class EstadosService {
     async delete(id) {
         return await this.estadoRepository.delete(id);
     }
+    async validaId(estado) {
+        const estadoData = await this.estadoRepository.findOne({ id: estado.id });
+        if (estadoData) {
+            return true;
+        }
+        return false;
+    }
+    async validaEstado(estado) {
+        return await this.estadoRepository.findOne(estado);
+    }
 };
 EstadosService = __decorate([
     common_1.Injectable(),

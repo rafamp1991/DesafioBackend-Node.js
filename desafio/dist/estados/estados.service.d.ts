@@ -9,4 +9,6 @@ export declare class EstadosService {
     create(estado: Estado): Promise<Estado>;
     update(estado: Estado): Promise<UpdateResult>;
     delete(id: any): Promise<DeleteResult>;
+    validaId(estado: Estado): Promise<any>;
+    validaEstado(estado: Estado): Promise<Estado>;
 }

@@ -13,4 +13,6 @@ export declare class CidadesService {
     create(cidade: Cidade): Promise<Cidade>;
     update(cidade: Cidade): Promise<UpdateResult>;
     delete(id: any): Promise<DeleteResult>;
+    validaId(cidade: Cidade): Promise<any>;
+    validaCidade(cidade: Cidade): Promise<Cidade>;
 }

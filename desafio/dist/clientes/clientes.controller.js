@@ -24,40 +24,52 @@ let ClientesController = class ClientesController {
     index() {
         return this.clientesService.findAll();
     }
-    findById(id, clienteData) {
+    async findById(id, clienteData) {
         clienteData.id = Number(id);
+        let cliente = new cliente_entity_1.Cliente();
+        cliente = await this.clientesService.validaCliente(clienteData);
+        if (!cliente) {
+            throw new common_1.HttpException('Não foi possível encontrar o recurso especificado.', 404);
+        }
         return this.clientesService.findOne(clienteData);
     }
-    findByNome(nome, clienteData) {
+    async findByNome(nome, clienteData) {
         clienteData.nome = String(nome);
+        let cliente = new cliente_entity_1.Cliente();
+        cliente = await this.clientesService.validaCliente(clienteData);
+        if (!cliente) {
+            throw new common_1.HttpException('Não foi possível encontrar o recurso especificado.', 404);
+        }
         return this.clientesService.findOne(clienteData);
     }
     async findByCidadeNome(nome, cidade) {
         cidade.nome = String(nome);
         let cidadeData = new cidade_entity_1.Cidade();
         cidadeData = await this.clientesService.findByCidadeNome(cidade);
+        if (!cidadeData) {
+            throw new common_1.HttpException('Não foi possível encontrar o recurso especificado.', 404);
+        }
         return this.clientesService.findByCidadeId(cidadeData);
     }
     async create(clienteData) {
-        try {
-            return this.clientesService.create(clienteData);
+        let cliente = new cliente_entity_1.Cliente();
+        cliente = await this.clientesService.validaCpf(clienteData);
+        if (cliente) {
+            throw new common_1.HttpException('O cliente já existe.', 409);
         }
-        catch (error) {
-            throw new common_1.HttpException({
-                message: 'erro ao cadastrar o cliente',
-                success: false,
-                error,
-                data: null,
-            }, common_1.HttpStatus.BAD_REQUEST);
-        }
+        return this.clientesService.create(clienteData);
     }
     async update(id, clienteData) {
         clienteData.id = Number(id);
-        console.log('Update #' + clienteData.id);
+        let cliente = false;
+        cliente = await this.clientesService.validaId(clienteData);
+        if (cliente == false) {
+            throw new common_1.HttpException('Não foi possível encontrar o recurso especificado.', 404);
+        }
         return this.clientesService.update(clienteData);
     }
     async delete(id) {
-        return this.clientesService.delete(id);
+        return await this.clientesService.delete(id);
     }
 };
 __decorate([

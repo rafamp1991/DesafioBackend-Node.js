@@ -13,4 +13,7 @@ export declare class ClientesService {
     create(cliente: Cliente): Promise<Cliente>;
     update(cliente: Cliente): Promise<UpdateResult>;
     delete(id: any): Promise<DeleteResult>;
+    validaCpf(cliente: Cliente): Promise<any>;
+    validaId(cliente: Cliente): Promise<any>;
+    validaCliente(cliente: Cliente): Promise<Cliente>;
 }

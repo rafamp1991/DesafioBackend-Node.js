@@ -31,4 +31,16 @@ export class EstadosService {
     async delete(id): Promise<DeleteResult> {
         return await this.estadoRepository.delete(id);
     }
+
+    async validaId(estado: Estado) : Promise<any> {
+        const estadoData = await this.estadoRepository.findOne({ id: estado.id });
+        if(estadoData){
+            return true;
+        }
+        return false;
+    }
+
+    async validaEstado(estado: Estado) : Promise<Estado> {
+        return await this.estadoRepository.findOne(estado);
+    }
 }

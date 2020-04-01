@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, HttpException } from '@nestjs/common';
 import { Cidade } from './cidade.entity';
 import { CidadesService } from './cidades.service';
 import { Post, Put, Delete, Body, Param } from  '@nestjs/common';
@@ -14,14 +14,26 @@ export class CidadesController {
     }
     
     @Get('id/:id')
-    findById(@Param('id') id, @Body() cidadeData: Cidade): Promise<Cidade[]> {
+    async findById(@Param('id') id, @Body() cidadeData: Cidade): Promise<Cidade[]> {
         cidadeData.id = Number(id);
+        let cidade = new Cidade();
+        cidade = await this.cidadesService.validaCidade(cidadeData);
+
+        if (!cidade) {
+            throw new HttpException('Não foi possível encontrar o recurso especificado.', 404);
+        }
         return this.cidadesService.findOne(cidadeData);
     }
 
     @Get('nome/:nome')
-    findByNome(@Param('nome') nome, @Body() cidadeData: Cidade): Promise<Cidade[]> {
+    async findByNome(@Param('nome') nome, @Body() cidadeData: Cidade): Promise<Cidade[]> {
         cidadeData.nome = String(nome);
+        let cidade = new Cidade();
+        cidade = await this.cidadesService.validaCidade(cidadeData);
+
+        if (!cidade) {
+            throw new HttpException('Não foi possível encontrar o recurso especificado.', 404);
+        }
         return this.cidadesService.findOne(cidadeData);
     }
 
@@ -30,6 +42,10 @@ export class CidadesController {
         estado.nome = String(nome);
         let estadoData = new Estado();        
         estadoData =  await this.cidadesService.findByEstado(estado);
+
+        if (!estadoData) {
+            throw new HttpException('Não foi possível encontrar o recurso especificado.', 404);
+        }
         return this.cidadesService.findByEstadoId(estadoData);
     }
 
@@ -38,18 +54,33 @@ export class CidadesController {
         estado.uf = String(uf);
         let estadoData = new Estado();        
         estadoData =  await this.cidadesService.findByEstado(estado);
+
+        if (!estadoData) {
+            throw new HttpException('Não foi possível encontrar o recurso especificado.', 404);
+        }
         return this.cidadesService.findByEstadoId(estadoData);
     }
 
     @Post('create')
     async create(@Body() cidadeData: Cidade): Promise<any> {
-      return this.cidadesService.create(cidadeData);
+        let cidade = new Cidade();
+        cidade = await this.cidadesService.validaCidade(cidadeData);
+
+        if (cidade) {
+            throw new HttpException('A cidade já existe.', 409);
+        }
+        return this.cidadesService.create(cidadeData);
     }  
 
     @Put('update/:id')
     async update(@Param('id') id, @Body() cidadeData: Cidade): Promise<any> {
         cidadeData.id = Number(id);
-        console.log('Update #' + cidadeData.id)
+        let cidade = false;
+        cidade = await this.cidadesService.validaId(cidadeData);
+
+        if (cidade == false) {
+            throw new HttpException('Não foi possível encontrar o recurso especificado.', 404);
+        }
         return this.cidadesService.update(cidadeData);
     }
 

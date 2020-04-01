@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, HttpException } from '@nestjs/common';
 import { Estado } from './estado.entity';
 import { EstadosService } from './estados.service';
 import { Post, Put, Delete, Body, Param } from  '@nestjs/common';
@@ -13,33 +13,62 @@ export class EstadosController {
     } 
 
     @Get('id/:id')
-    findById(@Param('id') id, @Body() estadoData: Estado): Promise<Estado[]> {
+    async findById(@Param('id') id, @Body() estadoData: Estado): Promise<Estado[]> {
       estadoData.id = Number(id);
-        return this.estadosService.findOne(estadoData);
+      let estado = new Estado();
+      estado = await this.estadosService.validaEstado(estadoData);
+
+      if (!estado) {
+          throw new HttpException('Não foi possível encontrar o recurso especificado.', 404);
+      }
+      return this.estadosService.findOne(estadoData);
     }
 
     @Get('uf/:uf')
-    findByUf(@Param('uf') uf, @Body() estadoData: Estado): Promise<Estado[]> {
+    async findByUf(@Param('uf') uf, @Body() estadoData: Estado): Promise<Estado[]> {
       estadoData.uf = String(uf);
+      let estado = new Estado();
+      estado = await this.estadosService.validaEstado(estadoData);
+
+      if (!estado) {
+          throw new HttpException('Não foi possível encontrar o recurso especificado.', 404);
+      }
       return this.estadosService.findOne(estadoData);
     }
 
     @Get('nome/:nome')
-    findByNome(@Param('nome') nome, @Body() estadoData: Estado): Promise<Estado[]> {
+    async findByNome(@Param('nome') nome, @Body() estadoData: Estado): Promise<Estado[]> {
       estadoData.nome = String(nome);
+      let estado = new Estado();
+      estado = await this.estadosService.validaEstado(estadoData);
+
+      if (!estado) {
+          throw new HttpException('Não foi possível encontrar o recurso especificado.', 404);
+      }
       return this.estadosService.findOne(estadoData);
     }
 
     @Post('create')
     async create(@Body() estadoData: Estado): Promise<any> {
+      let estado = new Estado();
+      estado = await this.estadosService.validaEstado(estadoData);
+
+      if (estado) {
+          throw new HttpException('O estado já existe.', 409);
+      }
       return this.estadosService.create(estadoData);
     }  
 
     @Put('update/:id')
     async update(@Param('id') id, @Body() estadoData: Estado): Promise<any> {
-        estadoData.id = Number(id);
-        console.log('Update #' + estadoData.id)
-        return this.estadosService.update(estadoData);
+      estadoData.id = Number(id);
+      let estado = false;
+      estado = await this.estadosService.validaId(estadoData);
+
+      if (estado == false) {
+        throw new HttpException('Não foi possível encontrar o recurso especificado.', 404);
+      }
+      return this.estadosService.update(estadoData);
     }
 
     @Delete('delete/:id')

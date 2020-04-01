@@ -23,24 +23,48 @@ let EstadosController = class EstadosController {
     index() {
         return this.estadosService.findAll();
     }
-    findById(id, estadoData) {
+    async findById(id, estadoData) {
         estadoData.id = Number(id);
+        let estado = new estado_entity_1.Estado();
+        estado = await this.estadosService.validaEstado(estadoData);
+        if (!estado) {
+            throw new common_1.HttpException('Não foi possível encontrar o recurso especificado.', 404);
+        }
         return this.estadosService.findOne(estadoData);
     }
-    findByUf(uf, estadoData) {
+    async findByUf(uf, estadoData) {
         estadoData.uf = String(uf);
+        let estado = new estado_entity_1.Estado();
+        estado = await this.estadosService.validaEstado(estadoData);
+        if (!estado) {
+            throw new common_1.HttpException('Não foi possível encontrar o recurso especificado.', 404);
+        }
         return this.estadosService.findOne(estadoData);
     }
-    findByNome(nome, estadoData) {
+    async findByNome(nome, estadoData) {
         estadoData.nome = String(nome);
+        let estado = new estado_entity_1.Estado();
+        estado = await this.estadosService.validaEstado(estadoData);
+        if (!estado) {
+            throw new common_1.HttpException('Não foi possível encontrar o recurso especificado.', 404);
+        }
         return this.estadosService.findOne(estadoData);
     }
     async create(estadoData) {
+        let estado = new estado_entity_1.Estado();
+        estado = await this.estadosService.validaEstado(estadoData);
+        if (estado) {
+            throw new common_1.HttpException('O estado já existe.', 409);
+        }
         return this.estadosService.create(estadoData);
     }
     async update(id, estadoData) {
         estadoData.id = Number(id);
-        console.log('Update #' + estadoData.id);
+        let estado = false;
+        estado = await this.estadosService.validaId(estadoData);
+        if (estado == false) {
+            throw new common_1.HttpException('Não foi possível encontrar o recurso especificado.', 404);
+        }
         return this.estadosService.update(estadoData);
     }
     async delete(id) {

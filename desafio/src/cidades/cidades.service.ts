@@ -50,4 +50,16 @@ export class CidadesService {
     async delete(id): Promise<DeleteResult> {
         return await this.cidadeRepository.delete(id);
     }
+
+    async validaId(cidade: Cidade) : Promise<any> {
+        const cidadeData = await this.cidadeRepository.findOne({ id: cidade.id });
+        if(cidadeData){
+            return true;
+        }
+        return false;
+    }
+
+    async validaCidade(cidade: Cidade) : Promise<Cidade> {
+        return await this.cidadeRepository.findOne(cidade);
+    }
 }
