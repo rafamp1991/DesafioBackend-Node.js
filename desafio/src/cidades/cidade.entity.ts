@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, Double, ManyToOne, OneToMany  } from 'typeorm';
 import { Estado } from '../estados/estado.entity';
-import { Cliente } from 'src/clientes/cliente.entity';
+import { Cliente } from '../clientes/cliente.entity';
 
 @Entity({name: "cidades"})
 export class Cidade {

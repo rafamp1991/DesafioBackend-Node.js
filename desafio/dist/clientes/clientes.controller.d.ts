@@ -1,6 +1,6 @@
 import { Cliente } from './cliente.entity';
 import { ClientesService } from './clientes.service';
-import { Cidade } from 'src/cidades/cidade.entity';
+import { Cidade } from '../cidades/cidade.entity';
 export declare class ClientesController {
     private clientesService;
     constructor(clientesService: ClientesService);

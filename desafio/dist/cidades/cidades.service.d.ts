@@ -1,7 +1,7 @@
 import { Repository } from 'typeorm';
 import { Cidade } from './cidade.entity';
 import { UpdateResult, DeleteResult } from 'typeorm';
-import { Estado } from 'src/estados/estado.entity';
+import { Estado } from '../estados/estado.entity';
 export declare class CidadesService {
     private cidadeRepository;
     private estadoRepository;

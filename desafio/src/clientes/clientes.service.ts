@@ -3,7 +3,7 @@ import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Cliente } from './cliente.entity';
 import { UpdateResult, DeleteResult } from  'typeorm';
-import { Cidade } from 'src/cidades/cidade.entity';
+import { Cidade } from '../cidades/cidade.entity';
 
 @Injectable()
 export class ClientesService {

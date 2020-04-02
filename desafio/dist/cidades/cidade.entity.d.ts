@@ -1,6 +1,6 @@
 import { Double } from 'typeorm';
 import { Estado } from '../estados/estado.entity';
-import { Cliente } from 'src/clientes/cliente.entity';
+import { Cliente } from '../clientes/cliente.entity';
 export declare class Cidade {
     id: number;
     nome: string;

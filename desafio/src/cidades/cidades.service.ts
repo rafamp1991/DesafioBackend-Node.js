@@ -3,7 +3,7 @@ import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Cidade } from './cidade.entity';
 import { UpdateResult, DeleteResult } from  'typeorm';
-import { Estado } from 'src/estados/estado.entity';
+import { Estado } from '../estados/estado.entity';
 
 @Injectable()
 export class CidadesService {

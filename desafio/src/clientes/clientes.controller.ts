@@ -2,7 +2,7 @@ import { Controller, Get, HttpException } from '@nestjs/common';
 import { Cliente } from './cliente.entity';
 import { ClientesService } from './clientes.service';
 import { Post, Put, Delete, Body, Param } from  '@nestjs/common';
-import { Cidade } from 'src/cidades/cidade.entity';
+import { Cidade } from '../cidades/cidade.entity';
 
 @Controller('clientes')
 export class ClientesController {

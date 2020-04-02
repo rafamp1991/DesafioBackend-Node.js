@@ -1942,16 +1942,16 @@
         "signature": "8f1241f5d9f0d3d72117768b3c974e462840fbd85026fb66685078945404cf2f"
       },
       "../src/clientes/cliente.entity.ts": {
-        "version": "f97b4a72140383276446c8f1f737bd62be331a4343e57f05782227342f6828f6",
-        "signature": "dc23a812f114f3d27ee759674804da146c3464ab75e2663055824aa09e5feffd"
+        "version": "6ec0784ad0ab34aeb0eefa82a45fa3482addb7a08d4b1920ed860766bb4a94a7",
+        "signature": "865c340dbba62e5e6d790cd8ccb6131579c2a7bd7d0528daa8671cbb0bc2e111"
       },
       "../src/cidades/cidade.entity.ts": {
-        "version": "5b92006e56075d876dbde050d1c0e0499bef9d25dbd239ba4e6229fa00bf06b0",
-        "signature": "cd294f0c5f71de2ee1ecfec3da0e71d0a5b955471c4020517f4656f09132e50a"
+        "version": "3cd011082e1f0d29c4aed7a7775c288836991d2d830301cda58ffe54eea0bd1d",
+        "signature": "b17421a1341a7acc38ec2960db07f4b6f5dc84770a9cbbd22004e652f82a9cf4"
       },
       "../src/estados/estado.entity.ts": {
-        "version": "b760b310bfb90034368dbdd08ba9b60139c273485faa1ebe63efdd2c884111c9",
-        "signature": "fc149dbc26ac09055b1898b4cbb6306f0054625452557bbae977dffe043a9891"
+        "version": "537ee81e0be5d93b6746116dc6bf02f456de67e3275ce2d531850a6c986e76b2",
+        "signature": "5bdfc27b6cbb8529347e63549e77622c3f3b2f0398fe855fba50d403fc464e94"
       },
       "../src/estados/estados.service.ts": {
         "version": "c2343cade24e63a1f7926ba871773d9ccd672e360eac1a0e2bed616f47c6c0db",
@@ -1966,8 +1966,8 @@
         "signature": "25a2b506e1bd6e4c5bffaa683977477ba61167fce116425a115db93c72abcd37"
       },
       "../src/cidades/cidades.service.ts": {
-        "version": "87bb27d6f73c622dac57d227e70221f3d37291fc793a2fa946c47e73c34576af",
-        "signature": "06d3bad7eecc5b9d4ab4a25f0608353a6be33cf5770d3c210759e17e4b81fbe9"
+        "version": "b853a44392519254b5aa72fe81fb2678e761f5906149417036e2441a260807c7",
+        "signature": "0e82e29385392490a8bc8a5251889e4cc2009a3dca70d2e654796bad7218d27d"
       },
       "../src/cidades/cidades.controller.ts": {
         "version": "f5ebb975647bab352e15189c8c37051f9358575f8da13fe4a6cae5b23dda7b44",
@@ -1978,15 +1978,15 @@
         "signature": "abbd020b049a11df61ee52449a506dc2b7862df90f75aff4a908d4a21a4999a1"
       },
       "../src/clientes/clientes.service.ts": {
-        "version": "374453aa3c61a6a3be479f9e025b3f63c025b7675255f49db2e8f1f72a2cbce0",
-        "signature": "f1fbeaf8a8eeaf4eee09387aa23dfcc525227280ac9f74f71c2a91aa9e25939e"
+        "version": "3d9d9c2a34e29d93fbd6bc29cc15118a0f404e6b7ceef1aaded45a98c166117d",
+        "signature": "76fbe52bfae7aaf2eb30126125bcafe94178e7f55a638243f62e3edfe1ed0bb0"
       },
       "../src/clientes/clientes.controller.ts": {
-        "version": "a75de456fc8f42ea696d7e4ca05b13aa00f1e8d5562c7d9ca637ba893a80cd9c",
-        "signature": "5909aedae9d387a783c6b05f4b0ed1617815effe90f1877337179c507c2c1303"
+        "version": "f2b7ce3aae36f058cb175a44d4b04596b222206047b437d95b955f7bd53ede3b",
+        "signature": "5438a0c22e32058f0b3db45fb8c90221a5244903f3e9b5fc5a20e817e1f2c1fa"
       },
       "../src/clientes/clientes.module.ts": {
-        "version": "27e9cd1bec1c46fa5a6e3e8886c4f8935c0a94630d17a9d771b04dd247d270aa",
+        "version": "69a3ba84627ad58cc29320f73c380c85f295d140c193609492fb598d00535e0f",
         "signature": "9240845af1cbaa914af79b4e3f01ce277f95ec4b71b05dd818ffb080b6083b75"
       },
       "../src/app.module.ts": {
@@ -13369,10 +13369,10 @@
       "../src/estados/estados.controller.ts",
       "../src/estados/estados.module.ts",
       "../src/cidades/cidades.service.ts",
+      "../src/cidades/cidades.controller.ts",
       "../src/cidades/cidades.module.ts",
       "../src/clientes/clientes.service.ts",
       "../src/clientes/clientes.controller.ts",
-      "../src/clientes/clientes.module.ts",
       "../src/app.module.ts",
       "../node_modules/@nestjs/core/adapters/http-adapter.d.ts",
       "../node_modules/@nestjs/core/adapters/index.d.ts",
@@ -13501,7 +13501,7 @@
       "../node_modules/@types/webpack/index.d.ts",
       "../node_modules/@types/yargs-parser/index.d.ts",
       "../node_modules/@types/yargs/index.d.ts",
-      "../src/cidades/cidades.controller.ts"
+      "../src/clientes/clientes.module.ts"
     ]
   },
   "version": "3.8.3"

@@ -3,7 +3,7 @@ import { ClientesService } from './clientes.service';
 import { ClientesController } from './clientes.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Cliente } from './cliente.entity';
-import { Cidade } from 'src/cidades/cidade.entity';
+import { Cidade } from '../cidades/cidade.entity';
 
 @Module({
   imports: [

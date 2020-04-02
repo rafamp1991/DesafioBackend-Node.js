@@ -1,18 +1,26 @@
-import { Test, TestingModule } from '@nestjs/testing';
+import { Test } from '@nestjs/testing';
 import { ClientesService } from './clientes.service';
+import { CidadesService } from '../cidades/cidades.service';
+import { ClientesModule } from './clientes.module';
+import { Cliente } from './cliente.entity';
 
 describe('ClientesService', () => {
-  let service: ClientesService;
+  let clientesService: ClientesService;
+  let cidadesService: CidadesService;
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      providers: [ClientesService],
+    const moduleRef = await Test.createTestingModule({
+      imports: [ClientesModule],
+      providers: [ClientesService, CidadesService]
     }).compile();
 
-    service = module.get<ClientesService>(ClientesService);
+    clientesService = moduleRef.get<ClientesService>(ClientesService);
+    cidadesService = moduleRef.get<CidadesService>(CidadesService);
   });
 
-  it('should be defined', () => {
-    expect(service).toBeDefined();
+  it('findAll()', async () => {
+    const cliente = new Cliente;
+    expect(await clientesService.findAll()).toBe(cliente);
   });
+
 });
