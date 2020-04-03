@@ -20,103 +20,107 @@ let EstadosController = class EstadosController {
     constructor(estadosService) {
         this.estadosService = estadosService;
     }
-    index() {
-        return this.estadosService.findAll();
+    async index(res) {
+        if (!(await this.estadosService.findAll())) {
+            return res.status(404).send("status: 404 Not Found\nmensagem: Não foi possível encontrar o recurso especificado!");
+        }
+        return res.status(200).send(await this.estadosService.findAll());
     }
-    async findById(id, estadoData) {
+    async findById(res, id, estadoData) {
         estadoData.id = Number(id);
         let estado = new estado_entity_1.Estado();
-        estado = await this.estadosService.validaEstado(estadoData);
-        if (!estado) {
-            throw new common_1.HttpException('Não foi possível encontrar o recurso especificado.', 404);
+        if (!(estado = await this.estadosService.validaEstado(estadoData))) {
+            return res.status(404).send("status: 404 Not Found\nmensagem: Não foi possível encontrar o recurso especificado!");
         }
-        return this.estadosService.findOne(estadoData);
+        return res.status(200).send(await this.estadosService.findOne(estadoData));
     }
-    async findByUf(uf, estadoData) {
+    async findByUf(res, uf, estadoData) {
         estadoData.uf = String(uf);
         let estado = new estado_entity_1.Estado();
-        estado = await this.estadosService.validaEstado(estadoData);
-        if (!estado) {
-            throw new common_1.HttpException('Não foi possível encontrar o recurso especificado.', 404);
+        if (!(estado = await this.estadosService.validaEstado(estadoData))) {
+            return res.status(404).send("status: 404 Not Found\nmensagem: Não foi possível encontrar o recurso especificado!");
         }
-        return this.estadosService.findOne(estadoData);
+        return res.status(200).send(await this.estadosService.findOne(estadoData));
     }
-    async findByNome(nome, estadoData) {
+    async findByNome(res, nome, estadoData) {
         estadoData.nome = String(nome);
         let estado = new estado_entity_1.Estado();
-        estado = await this.estadosService.validaEstado(estadoData);
-        if (!estado) {
-            throw new common_1.HttpException('Não foi possível encontrar o recurso especificado.', 404);
+        if (!(estado = await this.estadosService.validaEstado(estadoData))) {
+            return res.status(404).send("status: 404 Not Found\nmensagem: Não foi possível encontrar o recurso especificado!");
         }
-        return this.estadosService.findOne(estadoData);
+        return res.status(200).send(await this.estadosService.findOne(estadoData));
     }
-    async create(estadoData) {
+    async create(res, estadoData) {
         let estado = new estado_entity_1.Estado();
-        estado = await this.estadosService.validaEstado(estadoData);
-        if (estado) {
-            throw new common_1.HttpException('O estado já existe.', 409);
+        if (estado = await this.estadosService.validaEstado(estadoData)) {
+            return res.status(409).send("status: 409 Conflict\nmensagem: O estado já existe!");
         }
-        return this.estadosService.create(estadoData);
+        return res.status(201).send(await this.estadosService.create(estadoData));
     }
-    async update(id, estadoData) {
+    async update(res, id, estadoData) {
         estadoData.id = Number(id);
         let estado = false;
-        estado = await this.estadosService.validaId(estadoData);
-        if (estado == false) {
-            throw new common_1.HttpException('Não foi possível encontrar o recurso especificado.', 404);
+        if (!(estado = await this.estadosService.validaId(estadoData))) {
+            return res.status(404).send("status: 404 Not Found\nmensagem: Não foi possível encontrar o recurso especificado!");
         }
-        return this.estadosService.update(estadoData);
+        return res.status(200).send(await this.estadosService.update(estadoData));
     }
-    async delete(id) {
-        return this.estadosService.delete(id);
+    async delete(res, id) {
+        let estado = new estado_entity_1.Estado();
+        estado.id = Number(id);
+        if (!(await this.estadosService.validaId(estado))) {
+            return res.status(404).send("status: 404 Not Found\nmensagem: Não foi possível encontrar o recurso especificado!");
+        }
+        return res.status(200).send(await this.estadosService.delete(id));
     }
 };
 __decorate([
     common_1.Get(),
+    __param(0, common_1.Res()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], EstadosController.prototype, "index", null);
 __decorate([
     common_1.Get('id/:id'),
-    __param(0, common_2.Param('id')), __param(1, common_2.Body()),
+    __param(0, common_1.Res()), __param(1, common_2.Param('id')), __param(2, common_2.Body()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, estado_entity_1.Estado]),
+    __metadata("design:paramtypes", [Object, Object, estado_entity_1.Estado]),
     __metadata("design:returntype", Promise)
 ], EstadosController.prototype, "findById", null);
 __decorate([
     common_1.Get('uf/:uf'),
-    __param(0, common_2.Param('uf')), __param(1, common_2.Body()),
+    __param(0, common_1.Res()), __param(1, common_2.Param('uf')), __param(2, common_2.Body()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, estado_entity_1.Estado]),
+    __metadata("design:paramtypes", [Object, Object, estado_entity_1.Estado]),
     __metadata("design:returntype", Promise)
 ], EstadosController.prototype, "findByUf", null);
 __decorate([
     common_1.Get('nome/:nome'),
-    __param(0, common_2.Param('nome')), __param(1, common_2.Body()),
+    __param(0, common_1.Res()), __param(1, common_2.Param('nome')), __param(2, common_2.Body()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, estado_entity_1.Estado]),
+    __metadata("design:paramtypes", [Object, Object, estado_entity_1.Estado]),
     __metadata("design:returntype", Promise)
 ], EstadosController.prototype, "findByNome", null);
 __decorate([
     common_2.Post('create'),
-    __param(0, common_2.Body()),
+    __param(0, common_1.Res()), __param(1, common_2.Body()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [estado_entity_1.Estado]),
+    __metadata("design:paramtypes", [Object, estado_entity_1.Estado]),
     __metadata("design:returntype", Promise)
 ], EstadosController.prototype, "create", null);
 __decorate([
     common_2.Put('update/:id'),
-    __param(0, common_2.Param('id')), __param(1, common_2.Body()),
+    __param(0, common_1.Res()), __param(1, common_2.Param('id')), __param(2, common_2.Body()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, estado_entity_1.Estado]),
+    __metadata("design:paramtypes", [Object, Object, estado_entity_1.Estado]),
     __metadata("design:returntype", Promise)
 ], EstadosController.prototype, "update", null);
 __decorate([
     common_2.Delete('delete/:id'),
-    __param(0, common_2.Param('id')),
+    __param(0, common_1.Res()), __param(1, common_2.Param('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", Promise)
 ], EstadosController.prototype, "delete", null);
 EstadosController = __decorate([

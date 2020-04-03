@@ -21,119 +21,123 @@ let CidadesController = class CidadesController {
     constructor(cidadesService) {
         this.cidadesService = cidadesService;
     }
-    index() {
-        return this.cidadesService.findAll();
+    async index(res) {
+        if (!(await this.cidadesService.findAll())) {
+            return res.status(404).send("status: 404 Not Found\nmensagem: Não foi possível encontrar o recurso especificado!");
+        }
+        return res.status(200).send(await this.cidadesService.findAll());
     }
-    async findById(id, cidadeData) {
+    async findById(res, id, cidadeData) {
         cidadeData.id = Number(id);
         let cidade = new cidade_entity_1.Cidade();
-        cidade = await this.cidadesService.validaCidade(cidadeData);
-        if (!cidade) {
-            throw new common_1.HttpException('Não foi possível encontrar o recurso especificado.', 404);
+        if (!(cidade = await this.cidadesService.validaCidade(cidadeData))) {
+            return res.status(404).send("status: 404 Not Found\nmensagem: Não foi possível encontrar o recurso especificado!");
         }
-        return this.cidadesService.findOne(cidadeData);
+        return res.status(200).send(await this.cidadesService.findOne(cidadeData));
     }
-    async findByNome(nome, cidadeData) {
+    async findByNome(res, nome, cidadeData) {
         cidadeData.nome = String(nome);
         let cidade = new cidade_entity_1.Cidade();
-        cidade = await this.cidadesService.validaCidade(cidadeData);
-        if (!cidade) {
-            throw new common_1.HttpException('Não foi possível encontrar o recurso especificado.', 404);
+        if (!(cidade = await this.cidadesService.validaCidade(cidadeData))) {
+            return res.status(404).send("status: 404 Not Found\nmensagem: Não foi possível encontrar o recurso especificado!");
         }
-        return this.cidadesService.findOne(cidadeData);
+        return res.status(200).send(await this.cidadesService.findOne(cidadeData));
     }
-    async findByEstadoNome(nome, estado) {
+    async findByEstadoNome(res, nome, estado) {
         estado.nome = String(nome);
         let estadoData = new estado_entity_1.Estado();
-        estadoData = await this.cidadesService.findByEstado(estado);
-        if (!estadoData) {
-            throw new common_1.HttpException('Não foi possível encontrar o recurso especificado.', 404);
+        if (!(estadoData = await this.cidadesService.findByEstado(estado))) {
+            return res.status(404).send("status: 404 Not Found\nmensagem: Não foi possível encontrar o recurso especificado!");
         }
-        return this.cidadesService.findByEstadoId(estadoData);
+        return res.status(200).send(await this.cidadesService.findByEstadoId(estadoData));
     }
-    async findByEstadoUf(uf, estado) {
+    async findByEstadoUf(res, uf, estado) {
         estado.uf = String(uf);
         let estadoData = new estado_entity_1.Estado();
         estadoData = await this.cidadesService.findByEstado(estado);
-        if (!estadoData) {
-            throw new common_1.HttpException('Não foi possível encontrar o recurso especificado.', 404);
+        if (!(estadoData = await this.cidadesService.findByEstado(estado))) {
+            return res.status(404).send("status: 404 Not Found\nmensagem: Não foi possível encontrar o recurso especificado!");
         }
-        return this.cidadesService.findByEstadoId(estadoData);
+        return res.status(200).send(await this.cidadesService.findByEstadoId(estadoData));
     }
-    async create(cidadeData) {
+    async create(res, cidadeData) {
         let cidade = new cidade_entity_1.Cidade();
-        cidade = await this.cidadesService.validaCidade(cidadeData);
-        if (cidade) {
-            throw new common_1.HttpException('A cidade já existe.', 409);
+        if (cidade = await this.cidadesService.validaCidade(cidadeData)) {
+            return res.status(409).send("status: 409 Conflict\nmensagem: O estado já existe!");
         }
-        return this.cidadesService.create(cidadeData);
+        return res.status(201).send(await this.cidadesService.create(cidadeData));
     }
-    async update(id, cidadeData) {
+    async update(res, id, cidadeData) {
         cidadeData.id = Number(id);
         let cidade = false;
-        cidade = await this.cidadesService.validaId(cidadeData);
-        if (cidade == false) {
-            throw new common_1.HttpException('Não foi possível encontrar o recurso especificado.', 404);
+        if (!(cidade = await this.cidadesService.validaId(cidadeData))) {
+            return res.status(404).send("status: 404 Not Found\nmensagem: Não foi possível encontrar o recurso especificado!");
         }
-        return this.cidadesService.update(cidadeData);
+        return res.status(200).send(await this.cidadesService.update(cidadeData));
     }
-    async delete(id) {
-        return this.cidadesService.delete(id);
+    async delete(res, id) {
+        let cidade = new cidade_entity_1.Cidade();
+        cidade.id = Number(id);
+        if (!(await this.cidadesService.validaId(cidade))) {
+            return res.status(404).send("status: 404 Not Found\nmensagem: Não foi possível encontrar o recurso especificado!");
+        }
+        return res.status(200).send(await this.cidadesService.delete(id));
     }
 };
 __decorate([
     common_1.Get(),
+    __param(0, common_1.Res()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], CidadesController.prototype, "index", null);
 __decorate([
     common_1.Get('id/:id'),
-    __param(0, common_2.Param('id')), __param(1, common_2.Body()),
+    __param(0, common_1.Res()), __param(1, common_2.Param('id')), __param(2, common_2.Body()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, cidade_entity_1.Cidade]),
+    __metadata("design:paramtypes", [Object, Object, cidade_entity_1.Cidade]),
     __metadata("design:returntype", Promise)
 ], CidadesController.prototype, "findById", null);
 __decorate([
     common_1.Get('nome/:nome'),
-    __param(0, common_2.Param('nome')), __param(1, common_2.Body()),
+    __param(0, common_1.Res()), __param(1, common_2.Param('nome')), __param(2, common_2.Body()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, cidade_entity_1.Cidade]),
+    __metadata("design:paramtypes", [Object, Object, cidade_entity_1.Cidade]),
     __metadata("design:returntype", Promise)
 ], CidadesController.prototype, "findByNome", null);
 __decorate([
     common_1.Get('estado/nome/:nome'),
-    __param(0, common_2.Param('nome')), __param(1, common_2.Body()),
+    __param(0, common_1.Res()), __param(1, common_2.Param('nome')), __param(2, common_2.Body()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, estado_entity_1.Estado]),
+    __metadata("design:paramtypes", [Object, Object, estado_entity_1.Estado]),
     __metadata("design:returntype", Promise)
 ], CidadesController.prototype, "findByEstadoNome", null);
 __decorate([
     common_1.Get('estado/uf/:uf'),
-    __param(0, common_2.Param('uf')), __param(1, common_2.Body()),
+    __param(0, common_1.Res()), __param(1, common_2.Param('uf')), __param(2, common_2.Body()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, estado_entity_1.Estado]),
+    __metadata("design:paramtypes", [Object, Object, estado_entity_1.Estado]),
     __metadata("design:returntype", Promise)
 ], CidadesController.prototype, "findByEstadoUf", null);
 __decorate([
     common_2.Post('create'),
-    __param(0, common_2.Body()),
+    __param(0, common_1.Res()), __param(1, common_2.Body()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [cidade_entity_1.Cidade]),
+    __metadata("design:paramtypes", [Object, cidade_entity_1.Cidade]),
     __metadata("design:returntype", Promise)
 ], CidadesController.prototype, "create", null);
 __decorate([
     common_2.Put('update/:id'),
-    __param(0, common_2.Param('id')), __param(1, common_2.Body()),
+    __param(0, common_1.Res()), __param(1, common_2.Param('id')), __param(2, common_2.Body()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, cidade_entity_1.Cidade]),
+    __metadata("design:paramtypes", [Object, Object, cidade_entity_1.Cidade]),
     __metadata("design:returntype", Promise)
 ], CidadesController.prototype, "update", null);
 __decorate([
     common_2.Delete('delete/:id'),
-    __param(0, common_2.Param('id')),
+    __param(0, common_1.Res()), __param(1, common_2.Param('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", Promise)
 ], CidadesController.prototype, "delete", null);
 CidadesController = __decorate([

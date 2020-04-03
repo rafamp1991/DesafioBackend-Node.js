@@ -1,4 +1,4 @@
-import { Controller, Get, HttpException } from '@nestjs/common';
+import { Controller, Get, Res } from '@nestjs/common';
 import { Cliente } from './cliente.entity';
 import { ClientesService } from './clientes.service';
 import { Post, Put, Delete, Body, Param } from  '@nestjs/common';
@@ -9,74 +9,75 @@ export class ClientesController {
     constructor(private clientesService: ClientesService){}
 
     @Get()
-    index(): Promise<Cliente[]> {
-        return this.clientesService.findAll();
+    async index(@Res() res): Promise<Cliente[]> {
+        if (!(await this.clientesService.findAll())) {
+            return res.status(404).send("status: 404 Not Found\nmensagem: Não foi possível encontrar o recurso especificado!");
+        }
+        return res.status(200).send(await this.clientesService.findAll());
     } 
 
     @Get('id/:id')
-    async findById(@Param('id') id, @Body() clienteData: Cliente): Promise<Cliente[]> {
+    async findById(@Res() res, @Param('id') id, @Body() clienteData: Cliente): Promise<Cliente[]> {
         clienteData.id = Number(id);
-
         let cliente = new Cliente();
-        cliente = await this.clientesService.validaCliente(clienteData);
 
-        if (!cliente) {
-            throw new HttpException('Não foi possível encontrar o recurso especificado.', 404);
-        }
-        return this.clientesService.findOne(clienteData);
+        if (!(cliente = await this.clientesService.validaCliente(clienteData))) {
+            return res.status(404).send("status: 404 Not Found\nmensagem: Não foi possível encontrar o recurso especificado!");
+        } 
+        return res.status(200).send(await this.clientesService.findOne(clienteData));
     }
 
     @Get('nome/:nome')
-    async findByNome(@Param('nome') nome, @Body() clienteData: Cliente): Promise<Cliente[]> {
+    async findByNome(@Res() res, @Param('nome') nome, @Body() clienteData: Cliente): Promise<Cliente[]> {
         clienteData.nome = String(nome);
-
         let cliente = new Cliente();
-        cliente = await this.clientesService.validaCliente(clienteData);
 
-        if (!cliente) {
-            throw new HttpException('Não foi possível encontrar o recurso especificado.', 404);
-        }
-        return this.clientesService.findOne(clienteData);
+        if (!(cliente = await this.clientesService.validaCliente(clienteData))) {
+            return res.status(404).send("status: 404 Not Found\nmensagem: Não foi possível encontrar o recurso especificado!");
+        } 
+        return res.status(200).send(await this.clientesService.findOne(clienteData));
     }
 
     @Get('cidade/:nome')
-    async findByCidadeNome(@Param('nome') nome, @Body() cidade: Cidade): Promise<Cliente[]> {
+    async findByCidadeNome(@Res() res, @Param('nome') nome, @Body() cidade: Cidade): Promise<Cliente[]> {
         cidade.nome = String(nome);
-
         let cidadeData = new Cidade();
-        cidadeData =  await this.clientesService.findByCidadeNome(cidade);
-        
-        if (!cidadeData) {
-            throw new HttpException('Não foi possível encontrar o recurso especificado.', 404);
-        }
-        return this.clientesService.findByCidadeId(cidadeData);
+
+        if (!(cidadeData = await this.clientesService.findByCidadeNome(cidade))) {
+            return res.status(404).send("status: 404 Not Found\nmensagem: Não foi possível encontrar o recurso especificado!");
+        } 
+        return res.status(200).send(await this.clientesService.findByCidadeId(cidadeData));
     }
 
     @Post('create')
-    async create(@Body() clienteData: Cliente): Promise<any> {
-        let cliente = new Cliente();
-        cliente = await this.clientesService.validaCpf(clienteData);
-        
-        if (cliente) {
-            throw new HttpException('O cliente já existe.', 409);
+    async create(@Res() res, @Body() clienteData: Cliente): Promise<any> {
+        let cliente:boolean = false;
+
+        if (cliente = await this.clientesService.validaCpf(clienteData)) {
+            return res.status(409).send("status: 409 Conflict\nmensagem: O cliente já existe!");
         }
-        return this.clientesService.create(clienteData);
+        return res.status(201).send(await this.clientesService.create(clienteData));
     }  
 
     @Put('update/:id')
-    async update(@Param('id') id, @Body() clienteData: Cliente): Promise<any> {
+    async update(@Res() res, @Param('id') id, @Body() clienteData: Cliente): Promise<any> {
         clienteData.id = Number(id);
-        let cliente = false;
-        cliente = await this.clientesService.validaId(clienteData);
+        let cliente:boolean = false;
 
-        if (cliente == false) {
-            throw new HttpException('Não foi possível encontrar o recurso especificado.', 404);
+        if (!(cliente = await this.clientesService.validaId(clienteData))) {
+            return res.status(404).send("status: 404 Not Found\nmensagem: Não foi possível encontrar o recurso especificado!");
         }
-        return this.clientesService.update(clienteData);
+        return res.status(200).send(await this.clientesService.update(clienteData));
     }
 
     @Delete('delete/:id')
-    async delete(@Param('id') id): Promise<any> {   
-        return await this.clientesService.delete(id);
+    async delete(@Res() res, @Param('id') id): Promise<any> { 
+        let cliente = new Cliente();
+        cliente.id = Number(id);
+
+        if (!(await this.clientesService.validaId(cliente))) {
+            return res.status(404).send("status: 404 Not Found\nmensagem: Não foi possível encontrar o recurso especificado!");
+        }
+        return res.status(200).send(await this.clientesService.delete(id));
     }  
 }

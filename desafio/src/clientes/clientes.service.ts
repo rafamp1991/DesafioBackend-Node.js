@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Cliente } from './cliente.entity';
@@ -53,7 +53,7 @@ export class ClientesService {
 
     async validaCpf(cliente: Cliente) : Promise<any> {
         const clienteData = await this.clienteRepository.findOne({ cpf: cliente.cpf });
-        if(clienteData){
+        if(clienteData) {
             return true;
         }
         return false;
@@ -61,7 +61,7 @@ export class ClientesService {
 
     async validaId(cliente: Cliente) : Promise<any> {
         const clienteData = await this.clienteRepository.findOne({ id: cliente.id });
-        if(clienteData){
+        if(clienteData) {
             return true;
         }
         return false;

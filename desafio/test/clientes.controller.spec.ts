@@ -4,6 +4,9 @@ import { ClientesController } from '../src/clientes/clientes.controller';
 import { ClientesService } from '../src/clientes/clientes.service';
 import { Cliente } from '../src/clientes/cliente.entity';
 import { Cidade } from '../src/cidades/cidade.entity';
+import { HttpStatus } from '@nestjs/common';
+import { isNull } from 'util';
+import { empty } from 'rxjs';
 
 describe('Clientes Controller', () => {
   let testingModule: TestingModule;
@@ -22,6 +25,8 @@ describe('Clientes Controller', () => {
             update: jest.fn(() => true),
             delete: jest.fn(() => true),
             validaCpf: jest.fn(() => true),
+            validaId: jest.fn(() => true),
+            validaCliente: jest.fn(() => true),
           }),
         },
       ],
@@ -41,6 +46,7 @@ describe('Clientes Controller', () => {
     it('Cadastra um novo cliente', async () => {
       let cli = new Cliente;
       
+      cli.id = 1;
       cli.nome = 'Rafael';
       cli.sobrenome = 'Martins de Padua';
       cli.cpf = '000.000.000-17';
@@ -56,7 +62,7 @@ describe('Clientes Controller', () => {
 
       //Verifica se objeto possui a propriedade id
       expect.objectContaining(cli.id);
-
+      
       //Verifica a chamada das assertions
       expect.assertions(8)
 
@@ -78,6 +84,7 @@ describe('Clientes Controller', () => {
     it('Atualiza um cliente', async () => {
       let cli = new Cliente;
       
+      cli.id = 1;
       cli.nome = 'Rafael';
       cli.sobrenome = 'Martins de Padua';
       cli.cpf = '000.000.000-17';
@@ -115,26 +122,20 @@ describe('Clientes Controller', () => {
   describe('delete', () => {
     it('Remove um cliente', async () => {
       let cli = new Cliente;
-      
-      cli.id = 8;
+
+      cli.id = 2;
       cli.nome = 'Rafael';
       cli.sobrenome = 'Martins de Padua';
-      cli.cpf = '000.000.000-17';
+      cli.cpf = '000.000.000-18';
       cli.sexo = 'masculino';
       cli.dataNascimento = new Date(1991, 1, 6);
       cli.idade = 29;
       cli.cidade = new Cidade;
       cli.cidade.id = 4204202;
       controller.create(cli);
-      
-      
-      controller.delete(8);
 
-      //Verifica a chamada das assertions
-      expect.assertions(1)
-
-      //Promisse matcher
-      expect(cli).toBe(null);
+      let data = await controller.delete(200, 2);
+      expect(data).toBe(200);
       
     });
   });

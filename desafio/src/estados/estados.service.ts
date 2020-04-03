@@ -34,7 +34,7 @@ export class EstadosService {
 
     async validaId(estado: Estado) : Promise<any> {
         const estadoData = await this.estadoRepository.findOne({ id: estado.id });
-        if(estadoData){
+        if(estadoData) {
             return true;
         }
         return false;

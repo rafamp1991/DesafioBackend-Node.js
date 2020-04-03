@@ -21,103 +21,107 @@ let ClientesController = class ClientesController {
     constructor(clientesService) {
         this.clientesService = clientesService;
     }
-    index() {
-        return this.clientesService.findAll();
+    async index(res) {
+        if (!(await this.clientesService.findAll())) {
+            return res.status(404).send("status: 404 Not Found\nmensagem: Não foi possível encontrar o recurso especificado!");
+        }
+        return res.status(200).send(await this.clientesService.findAll());
     }
-    async findById(id, clienteData) {
+    async findById(res, id, clienteData) {
         clienteData.id = Number(id);
         let cliente = new cliente_entity_1.Cliente();
-        cliente = await this.clientesService.validaCliente(clienteData);
-        if (!cliente) {
-            throw new common_1.HttpException('Não foi possível encontrar o recurso especificado.', 404);
+        if (!(cliente = await this.clientesService.validaCliente(clienteData))) {
+            return res.status(404).send("status: 404 Not Found\nmensagem: Não foi possível encontrar o recurso especificado!");
         }
-        return this.clientesService.findOne(clienteData);
+        return res.status(200).send(await this.clientesService.findOne(clienteData));
     }
-    async findByNome(nome, clienteData) {
+    async findByNome(res, nome, clienteData) {
         clienteData.nome = String(nome);
         let cliente = new cliente_entity_1.Cliente();
-        cliente = await this.clientesService.validaCliente(clienteData);
-        if (!cliente) {
-            throw new common_1.HttpException('Não foi possível encontrar o recurso especificado.', 404);
+        if (!(cliente = await this.clientesService.validaCliente(clienteData))) {
+            return res.status(404).send("status: 404 Not Found\nmensagem: Não foi possível encontrar o recurso especificado!");
         }
-        return this.clientesService.findOne(clienteData);
+        return res.status(200).send(await this.clientesService.findOne(clienteData));
     }
-    async findByCidadeNome(nome, cidade) {
+    async findByCidadeNome(res, nome, cidade) {
         cidade.nome = String(nome);
         let cidadeData = new cidade_entity_1.Cidade();
-        cidadeData = await this.clientesService.findByCidadeNome(cidade);
-        if (!cidadeData) {
-            throw new common_1.HttpException('Não foi possível encontrar o recurso especificado.', 404);
+        if (!(cidadeData = await this.clientesService.findByCidadeNome(cidade))) {
+            return res.status(404).send("status: 404 Not Found\nmensagem: Não foi possível encontrar o recurso especificado!");
         }
-        return this.clientesService.findByCidadeId(cidadeData);
+        return res.status(200).send(await this.clientesService.findByCidadeId(cidadeData));
     }
-    async create(clienteData) {
-        let cliente = new cliente_entity_1.Cliente();
-        cliente = await this.clientesService.validaCpf(clienteData);
-        if (cliente) {
-            throw new common_1.HttpException('O cliente já existe.', 409);
+    async create(res, clienteData) {
+        let cliente = false;
+        if (cliente = await this.clientesService.validaCpf(clienteData)) {
+            return res.status(409).send("status: 409 Conflict\nmensagem: O cliente já existe!");
         }
-        return this.clientesService.create(clienteData);
+        return res.status(201).send(await this.clientesService.create(clienteData));
     }
-    async update(id, clienteData) {
+    async update(res, id, clienteData) {
         clienteData.id = Number(id);
         let cliente = false;
-        cliente = await this.clientesService.validaId(clienteData);
-        if (cliente == false) {
-            throw new common_1.HttpException('Não foi possível encontrar o recurso especificado.', 404);
+        if (!(cliente = await this.clientesService.validaId(clienteData))) {
+            return res.status(404).send("status: 404 Not Found\nmensagem: Não foi possível encontrar o recurso especificado!");
         }
-        return this.clientesService.update(clienteData);
+        return res.status(200).send(await this.clientesService.update(clienteData));
     }
-    async delete(id) {
-        return await this.clientesService.delete(id);
+    async delete(res, id) {
+        let cliente = new cliente_entity_1.Cliente();
+        cliente.id = Number(id);
+        if (!(await this.clientesService.validaId(cliente))) {
+            return res.status(404).send("status: 404 Not Found\nmensagem: Não foi possível encontrar o recurso especificado!");
+        }
+        return res.status(200).send(await this.clientesService.delete(id));
     }
 };
 __decorate([
     common_1.Get(),
+    __param(0, common_1.Res()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], ClientesController.prototype, "index", null);
 __decorate([
     common_1.Get('id/:id'),
-    __param(0, common_2.Param('id')), __param(1, common_2.Body()),
+    __param(0, common_1.Res()), __param(1, common_2.Param('id')), __param(2, common_2.Body()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, cliente_entity_1.Cliente]),
+    __metadata("design:paramtypes", [Object, Object, cliente_entity_1.Cliente]),
     __metadata("design:returntype", Promise)
 ], ClientesController.prototype, "findById", null);
 __decorate([
     common_1.Get('nome/:nome'),
-    __param(0, common_2.Param('nome')), __param(1, common_2.Body()),
+    __param(0, common_1.Res()), __param(1, common_2.Param('nome')), __param(2, common_2.Body()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, cliente_entity_1.Cliente]),
+    __metadata("design:paramtypes", [Object, Object, cliente_entity_1.Cliente]),
     __metadata("design:returntype", Promise)
 ], ClientesController.prototype, "findByNome", null);
 __decorate([
     common_1.Get('cidade/:nome'),
-    __param(0, common_2.Param('nome')), __param(1, common_2.Body()),
+    __param(0, common_1.Res()), __param(1, common_2.Param('nome')), __param(2, common_2.Body()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, cidade_entity_1.Cidade]),
+    __metadata("design:paramtypes", [Object, Object, cidade_entity_1.Cidade]),
     __metadata("design:returntype", Promise)
 ], ClientesController.prototype, "findByCidadeNome", null);
 __decorate([
     common_2.Post('create'),
-    __param(0, common_2.Body()),
+    __param(0, common_1.Res()), __param(1, common_2.Body()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [cliente_entity_1.Cliente]),
+    __metadata("design:paramtypes", [Object, cliente_entity_1.Cliente]),
     __metadata("design:returntype", Promise)
 ], ClientesController.prototype, "create", null);
 __decorate([
     common_2.Put('update/:id'),
-    __param(0, common_2.Param('id')), __param(1, common_2.Body()),
+    __param(0, common_1.Res()), __param(1, common_2.Param('id')), __param(2, common_2.Body()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, cliente_entity_1.Cliente]),
+    __metadata("design:paramtypes", [Object, Object, cliente_entity_1.Cliente]),
     __metadata("design:returntype", Promise)
 ], ClientesController.prototype, "update", null);
 __decorate([
     common_2.Delete('delete/:id'),
-    __param(0, common_2.Param('id')),
+    __param(0, common_1.Res()), __param(1, common_2.Param('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", Promise)
 ], ClientesController.prototype, "delete", null);
 ClientesController = __decorate([
