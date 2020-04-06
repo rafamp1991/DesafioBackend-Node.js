@@ -71,7 +71,8 @@ let EstadosController = class EstadosController {
         if (!(await this.estadosService.validaId(estado))) {
             return res.status(404).send("status: 404 Not Found\nmensagem: Não foi possível encontrar o recurso especificado!");
         }
-        return res.status(200).send(await this.estadosService.delete(id));
+        await this.estadosService.delete(id);
+        return res.status(200).send("status: 200 OK\nmensagem: estado removido com sucesso!");
     }
 };
 __decorate([

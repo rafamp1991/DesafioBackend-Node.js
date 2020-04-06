@@ -78,6 +78,7 @@ export class ClientesController {
         if (!(await this.clientesService.validaId(cliente))) {
             return res.status(404).send("status: 404 Not Found\nmensagem: Não foi possível encontrar o recurso especificado!");
         }
-        return res.status(200).send(await this.clientesService.delete(id));
+        await this.clientesService.delete(id);
+        return res.status(200).send("status: 200 OK\nmensagem: cliente removido com sucesso!");
     }  
 }

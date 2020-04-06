@@ -4,15 +4,19 @@ import { ClientesController } from '../src/clientes/clientes.controller';
 import { ClientesService } from '../src/clientes/clientes.service';
 import { Cliente } from '../src/clientes/cliente.entity';
 import { Cidade } from '../src/cidades/cidade.entity';
-import { HttpStatus } from '@nestjs/common';
-import { isNull } from 'util';
-import { empty } from 'rxjs';
+import { Res } from '@nestjs/common';
+
+const res = {
+  end: function(){},
+  status: function(s) {this.statusCode = s; return this;},
+  send: function(s){this.statusCode = s; return this;}
+};
 
 describe('Clientes Controller', () => {
   let testingModule: TestingModule;
   let controller: ClientesController;
   let spyService: ClientesService;
-
+  
   beforeEach(async () => {
     testingModule = await Test.createTestingModule({
       controllers: [ClientesController],
@@ -36,15 +40,15 @@ describe('Clientes Controller', () => {
   });
 
   describe('findAll', () => {
-    it('Deve listar todos os clientes', async () => {
-      controller.index();
-      expect(spyService.findAll()).toBeTruthy;
+    it('Verifica se a função findAll é solicitada', async () => {
+      controller.index(Res);
+      expect(spyService.findAll).toHaveBeenCalled();
     });
   });
 
   describe('create', () => {
     it('Cadastra um novo cliente', async () => {
-      let cli = new Cliente;
+      const cli = new Cliente;
       
       cli.id = 1;
       cli.nome = 'Rafael';
@@ -55,11 +59,11 @@ describe('Clientes Controller', () => {
       cli.idade = 29;
       cli.cidade = new Cidade;
       cli.cidade.id = 4204202;
-      controller.create(cli);
+      controller.create(res, cli);
 
       //Testa se o objeto é avaliado como true ou false
       expect(spyService.create).toBeTruthy;
-
+      
       //Verifica se objeto possui a propriedade id
       expect.objectContaining(cli.id);
       
@@ -82,7 +86,7 @@ describe('Clientes Controller', () => {
 
   describe('update', () => {
     it('Atualiza um cliente', async () => {
-      let cli = new Cliente;
+      const cli = new Cliente;
       
       cli.id = 1;
       cli.nome = 'Rafael';
@@ -93,8 +97,9 @@ describe('Clientes Controller', () => {
       cli.idade = 29;
       cli.cidade = new Cidade;
       cli.cidade.id = 4204202;
-      controller.create(cli);
+      controller.create(res, cli);
 
+      cli.id = 1;
       cli.nome = 'Rafa';
       cli.sobrenome = 'de Padua';
       cli.cpf = '000.000.000-13';
@@ -103,7 +108,7 @@ describe('Clientes Controller', () => {
       cli.idade = 18;
       cli.cidade = new Cidade;
       cli.cidade.id = 4204202;
-      controller.update(1,cli);
+      controller.update(res, 1,cli);
 
       //Verifica a chamada das assertions
       expect.assertions(7)
@@ -120,24 +125,12 @@ describe('Clientes Controller', () => {
   });
 
   describe('delete', () => {
-    it('Remove um cliente', async () => {
-      let cli = new Cliente;
+    it('Deve passar o parâmetro correto', async () => {
+      await controller.delete(res, 3);
+      expect(spyService.delete).not.toHaveBeenCalledWith(5);
 
-      cli.id = 2;
-      cli.nome = 'Rafael';
-      cli.sobrenome = 'Martins de Padua';
-      cli.cpf = '000.000.000-18';
-      cli.sexo = 'masculino';
-      cli.dataNascimento = new Date(1991, 1, 6);
-      cli.idade = 29;
-      cli.cidade = new Cidade;
-      cli.cidade.id = 4204202;
-      controller.create(cli);
-
-      let data = await controller.delete(200, 2);
-      expect(data).toBe(200);
-      
+      await controller.delete(res, 1);
+      expect(spyService.delete).toHaveBeenCalledWith(1);
     });
   });
-
 });

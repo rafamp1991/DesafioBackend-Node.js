@@ -1958,7 +1958,7 @@
         "signature": "aae4cc38c626076fe21ef93023809be517a612ea036d0abfd0585976620e9653"
       },
       "../src/estados/estados.controller.ts": {
-        "version": "ff2a14011bfc47a88f13425c03e8932a54a4c5f9e7b0f13781c689f958617146",
+        "version": "70e5128777e57da72cf6c6fc9c710e8cb54a750e0cf1eee8bc3fd2a8971836c3",
         "signature": "37d8a8d423115facbbdb4f6092da50a3a96d84a99937f3b62e8ebecacd3c2ec7"
       },
       "../src/estados/estados.module.ts": {
@@ -1970,7 +1970,7 @@
         "signature": "0e82e29385392490a8bc8a5251889e4cc2009a3dca70d2e654796bad7218d27d"
       },
       "../src/cidades/cidades.controller.ts": {
-        "version": "e44a25d4646b564563b94c4ef514ae3a687246d3a5db12f8b10607f7f58e2e6a",
+        "version": "6c3b86f0352ae0af7d25681d1d77247d3b7e63e9a97bfa96c5038367ee69a2f5",
         "signature": "cf8a283db5b67621436eae25727eb28db22a32eab73dd1a1057dd3007b42ee8c"
       },
       "../src/cidades/cidades.module.ts": {
@@ -1982,7 +1982,7 @@
         "signature": "76fbe52bfae7aaf2eb30126125bcafe94178e7f55a638243f62e3edfe1ed0bb0"
       },
       "../src/clientes/clientes.controller.ts": {
-        "version": "99c638d2f38905e70a030925283c13b37712e03652fbf86531a32de77f95eb37",
+        "version": "193a5d13a7bf8076254958c6d6f553751dec5822465a57fca792e7f96d067378",
         "signature": "61285c378689009289b7af55a279f63e78e5022d050e4e1e1455afa3a1808884"
       },
       "../src/clientes/clientes.module.ts": {
@@ -13366,14 +13366,11 @@
       "../src/cidades/cidade.entity.ts",
       "../src/estados/estado.entity.ts",
       "../src/estados/estados.service.ts",
+      "../src/estados/estados.controller.ts",
       "../src/estados/estados.module.ts",
       "../src/cidades/cidades.service.ts",
       "../src/cidades/cidades.controller.ts",
       "../src/cidades/cidades.module.ts",
-      "../src/clientes/clientes.service.ts",
-      "../src/clientes/clientes.controller.ts",
-      "../src/clientes/clientes.module.ts",
-      "../src/app.module.ts",
       "../node_modules/@nestjs/core/adapters/http-adapter.d.ts",
       "../node_modules/@nestjs/core/adapters/index.d.ts",
       "../node_modules/@nestjs/core/injector/module-token-factory.d.ts",
@@ -13501,7 +13498,10 @@
       "../node_modules/@types/webpack/index.d.ts",
       "../node_modules/@types/yargs-parser/index.d.ts",
       "../node_modules/@types/yargs/index.d.ts",
-      "../src/estados/estados.controller.ts"
+      "../src/clientes/clientes.service.ts",
+      "../src/clientes/clientes.module.ts",
+      "../src/clientes/clientes.controller.ts",
+      "../src/app.module.ts"
     ]
   },
   "version": "3.8.3"

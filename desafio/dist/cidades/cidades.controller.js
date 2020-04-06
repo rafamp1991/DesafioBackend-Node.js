@@ -81,7 +81,8 @@ let CidadesController = class CidadesController {
         if (!(await this.cidadesService.validaId(cidade))) {
             return res.status(404).send("status: 404 Not Found\nmensagem: Não foi possível encontrar o recurso especificado!");
         }
-        return res.status(200).send(await this.cidadesService.delete(id));
+        await this.cidadesService.delete(id);
+        return res.status(200).send("status: 200 OK\nmensagem: cidade removida com sucesso!");
     }
 };
 __decorate([
