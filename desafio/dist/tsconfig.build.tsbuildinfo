@@ -1970,15 +1970,15 @@
         "signature": "0e82e29385392490a8bc8a5251889e4cc2009a3dca70d2e654796bad7218d27d"
       },
       "../src/cidades/cidades.controller.ts": {
-        "version": "6c3b86f0352ae0af7d25681d1d77247d3b7e63e9a97bfa96c5038367ee69a2f5",
-        "signature": "cf8a283db5b67621436eae25727eb28db22a32eab73dd1a1057dd3007b42ee8c"
+        "version": "338112ccc283c1df50ba5df4772fc5cb7ecc124f03c49d3c81fbaad9ef3d203b",
+        "signature": "c570e2092e4e679c96ae3d5d75966013a5df0eda9c6c9e8ac3c20b002754d060"
       },
       "../src/cidades/cidades.module.ts": {
-        "version": "b6f8e70d3b9dcd8ab26527a59eb5a8d97148a1d4b50a3b44de8904e0f1c5cf94",
+        "version": "8ddb98a97a96d874299824cd63a8ccf5e20a642e30219544fface7f5ee789323",
         "signature": "abbd020b049a11df61ee52449a506dc2b7862df90f75aff4a908d4a21a4999a1"
       },
       "../src/clientes/clientes.service.ts": {
-        "version": "28283dce0c23d866ca8301c3291aff17754e6be9ec8af26a17e9467c50091b04",
+        "version": "3b784dc48342d7696ba8877b608e42d6605da5272daca9b32972e75e933cb7b5",
         "signature": "76fbe52bfae7aaf2eb30126125bcafe94178e7f55a638243f62e3edfe1ed0bb0"
       },
       "../src/clientes/clientes.controller.ts": {
@@ -13371,6 +13371,9 @@
       "../src/cidades/cidades.service.ts",
       "../src/cidades/cidades.controller.ts",
       "../src/cidades/cidades.module.ts",
+      "../src/clientes/clientes.service.ts",
+      "../src/clientes/clientes.controller.ts",
+      "../src/clientes/clientes.module.ts",
       "../node_modules/@nestjs/core/adapters/http-adapter.d.ts",
       "../node_modules/@nestjs/core/adapters/index.d.ts",
       "../node_modules/@nestjs/core/injector/module-token-factory.d.ts",
@@ -13498,9 +13501,6 @@
       "../node_modules/@types/webpack/index.d.ts",
       "../node_modules/@types/yargs-parser/index.d.ts",
       "../node_modules/@types/yargs/index.d.ts",
-      "../src/clientes/clientes.service.ts",
-      "../src/clientes/clientes.module.ts",
-      "../src/clientes/clientes.controller.ts",
       "../src/app.module.ts"
     ]
   },

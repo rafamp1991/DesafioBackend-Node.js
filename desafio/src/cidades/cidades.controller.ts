@@ -2,7 +2,7 @@ import { Controller, Get, Res } from '@nestjs/common';
 import { Cidade } from './cidade.entity';
 import { CidadesService } from './cidades.service';
 import { Post, Put, Delete, Body, Param } from  '@nestjs/common';
-import { Estado } from 'src/estados/estado.entity';
+import { Estado } from '../estados/estado.entity';
 
 @Controller('cidades')
 export class CidadesController {

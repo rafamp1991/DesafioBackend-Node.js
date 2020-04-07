@@ -1,6 +1,6 @@
 import { Cidade } from './cidade.entity';
 import { CidadesService } from './cidades.service';
-import { Estado } from 'src/estados/estado.entity';
+import { Estado } from '../estados/estado.entity';
 export declare class CidadesController {
     private cidadesService;
     constructor(cidadesService: CidadesService);
